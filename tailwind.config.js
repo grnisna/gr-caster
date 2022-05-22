@@ -1,28 +1,33 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
-  themes: [
-    {
-      mytheme: {
+  theme: {
+    extend: {},
+  },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
 
-        "primary": "#570DF8",
+          "primary": "#008F91",
 
-        "secondary": "#F000B8",
+          "secondary": "#F2F2F2",
 
-        "accent": "#37CDBE",
+          "accent": "#3A4256",
 
-        "neutral": "#3D4451",
+          "black": "#000000",
 
-        "base-100": "#FFFFFF",
+          "base-100": "#FFFFFF",
 
-        "info": "#3ABFF8",
+          "info": "#3ABFF8",
 
-        "success": "#36D399",
+          "success": "#36D399",
 
-        "warning": "#FBBD23",
+          "warning": "#F79100",
 
-        "error": "#F87272",
+          "error": "#F87272",
+        },
       },
-    },
-  ],
+    ],
+  },
   plugins: [require("daisyui")],
 }
