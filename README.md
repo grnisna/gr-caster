@@ -4,3 +4,7 @@
 
 # uses technology in this website:
 * react router 
+* tailwind
+* daisyUI
+* react - icon
+
