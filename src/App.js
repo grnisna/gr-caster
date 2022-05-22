@@ -4,8 +4,10 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/HomePage/Home";
 import Login from "./pages/Login/Login";
 import Purchase from "./pages/Purchases/Purchase";
-import Footer from "./SharedPages/Footer/Footer";
-import Navbar from "./SharedPages/Navbar/Navbar";
+import Footer from "./pages/SharedPages/Footer/Footer";
+
+
+import Navbar from "./pages/SharedPages/Navbar/Navbar";
 
 
 // data-theme="cupcake" 

@@ -35,6 +35,24 @@
         "price":800,
         "image":"https://i.ibb.co/nMX51zz/tools-Four.jpg",
         "description":"It use for 60kg weight things. It is normal  but very flexible"
+    },
+    {
+        "id":5,
+        "name":"Thread Swivel Tpe caster",
+        "model":"EDL Mini 1",
+        "weight":"550kg plate",
+        "price":800,
+        "image":"https://i.ibb.co/Ns7JM7Q/tools-Three.jpg",
+        "description":"It use for 60kg weight things. It is normal  but very flexible"
+    },
+    {
+        "id":6,
+        "name":"Thread Swivel Tpe caster",
+        "model":"EDL Mini 1",
+        "weight":"550kg plate",
+        "price":800,
+        "image":"https://i.ibb.co/z6HKb11/toolsOne.jpg",
+        "description":"It use for 60kg weight things. It is normal  but very flexible"
     }
     
 ]
