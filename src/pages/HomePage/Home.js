@@ -1,18 +1,10 @@
 import React from 'react';
+import Banner from '../../components/HomePageSection/Banner';
 
 const Home = () => {
     return (
         <div>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
-            <h1>this si HOmepage</h1>
+            <Banner></Banner>
         </div>
     );
 };
