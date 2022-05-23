@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import loginImage from '../../assets/loginBackgoundImge.jpg';
 import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { MdOutlineSecurity } from 'react-icons/md';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import SocialLogin from './SocialLogin';
@@ -13,52 +12,48 @@ import Loading from '../SharedPages/Loading/Loading';
 
 
 const Login = () => {
-    const [errror, setErrror] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
-    // --------- exists user ---------- 
-    const [user] = useAuthState(auth);
+    const [user1] = useAuthState(auth);
 
-    // ------------------ signIn account =-------------- 
+    const from = location?.state?.from?.pathname || '/';
+
+    // ----------react form  ---------------
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,
+        user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-
-    // --------------react  form ----------
-    const { register, formState: { errors }, handleSubmit } = useForm();
-
-    // navigate to other route ---------- 
     useEffect(() => {
-        if (user) {
+        if (user || user1) {
             navigate(from, { replace: true });
         }
-    }, [navigate, user,from]);
+    }, [user, navigate,from,user1])
 
-    // -------- loading --------- 
+    //   -------loaading------
     if (loading) {
         return <Loading></Loading>
-    }
+    };
 
-    // ---------- error ----------
+    // -------error message--------
+    let signInError;
     if (error) {
-        const errorMessage = error.message;
-        setErrror(errorMessage);
+        signInError = <p><span className='text-error' >{error?.message} </span></p>
     }
 
-    // -------submit form to login------------ 
-    const onSumit = async data => {
-        await signInWithEmailAndPassword(data.email, data.password);
-    }
+    const onSubmit = data => {
+        signInWithEmailAndPassword(data.email, data.password)
+    };
 
 
     return (
         <div style={{ backgroundImage: `url(${loginImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
 
-            <form onSubmit={handleSubmit(onSumit)} className="form-control lg:w-1/4 md:w-1/3 w-full border p-5 my-10  mx-auto bg-base-100" >
+
+            <form onSubmit={handleSubmit(onSubmit)} className="form-control lg:w-1/4 md:w-1/3 w-full border p-5 my-10  mx-auto bg-base-100" >
                 {/* ------------ title ---------------- */}
                 <h1 className='text-center text-2xl my-6'>Log in Form</h1>
                 {/* divider  */}
@@ -70,7 +65,6 @@ const Login = () => {
                 </label>
                 <input
                     type="email"
-                    name='email'
                     placeholder='Email Address'
                     className="input input-bordered w-full max-w-xs"
                     {...register('email', {
@@ -95,7 +89,6 @@ const Login = () => {
                 </label>
                 <input
                     type="password"
-                    name='password'
                     placeholder='Email Address'
                     className="input input-bordered w-full max-w-xs"
                     {...register('password', {
@@ -115,7 +108,7 @@ const Login = () => {
                 </label>
 
                 {/* -------------------errror messsage ------------  */}
-                {errror}
+                {signInError}
 
                 {/* ------------- submit ----------------- */}
                 <input
