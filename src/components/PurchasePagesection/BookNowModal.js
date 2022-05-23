@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import {  toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const BookNowModal = ({ item , setItem}) => {
+    const navigate = useNavigate();
 
     const [quantity, setQuantity] = useState(0);
 
@@ -26,7 +29,7 @@ const BookNowModal = ({ item , setItem}) => {
             itemId: _id,
             name:name,
             image:image,
-            price:price,
+            price:price,            
             model:model,            
             minbook:minbook,
             bookingQuantity:bookQuantity,
@@ -40,7 +43,12 @@ const BookNowModal = ({ item , setItem}) => {
             body:JSON.stringify(booking)
         })
         .then( res => res.json())
-        .then( data =>console.log(data))
+        .then( data =>console.log(data));
+
+        toast.success('Successfully Booked');
+        setItem(null);
+
+        navigate('/dashboard');
 
     }
 

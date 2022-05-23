@@ -14,7 +14,7 @@ const Navbar = ({ children }) => {
         navigate('/login');
     }
     return (
-        <div className="drawer drawer-end">
+        <div className="drawer drawer-end ">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* <!-- Navbar --> */}
@@ -30,6 +30,7 @@ const Navbar = ({ children }) => {
                             <li><NavLink to='/home'>HOME</NavLink></li>
                             <li><NavLink to={`/purchase`}>ALL PRODUCT</NavLink></li>
                             <li><NavLink to='/blogs'>BLOGS</NavLink></li>
+
                             <li>{user ? <>
                                 <NavLink to='/dashboard'>DASHBOARD</NavLink>
                                 <button onClick={handleLogOut} >LOGOUT</button>
@@ -38,6 +39,7 @@ const Navbar = ({ children }) => {
                                 :
                                 <NavLink to='/login'>LOGIN</NavLink>}</li>
                         </ul>
+                        
                     </div>
                     <div className="flex-none lg:hidden">
                         <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">

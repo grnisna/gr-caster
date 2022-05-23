@@ -6,6 +6,7 @@ import UseTools from '../../hooks/UseTools';
 const Purchase = () => {
     const [item,setItem] = useState(null);
     const [tools] = UseTools();
+    console.log(tools);
     return (
         <div className=' bg-secondary py-6'>
             <h1 className='divider text-primary text-center text-5xl font-bold my-12'>All Items</h1>

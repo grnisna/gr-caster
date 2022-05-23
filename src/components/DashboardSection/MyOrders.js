@@ -1,9 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
+
+    // ----------- get booking data from mongo db --------------
+    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
+        method: 'GET', headers: { 'content-type': 'application/json' }
+    }).then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    };
+
+
     return (
-        <div>
-            <h1>My All Orders</h1>
+        <div className='bg-base-100 ronded-lg'>
+            <h1 className='text-4xl font-bold text-center text-primary my-10 '>My All Order {booking.length}</h1>
+            <div >
+
+                <table class="table w-full">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Qtn</th>
+                            <th>Price</th>
+                            <th>Payment</th>
+                            <th>Cancel Book</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            booking.map((book, index) => <tr
+                                key={book._id}
+                            >
+                                <th>{index + 1}</th>
+                                <td>
+                                    <div class="avatar">
+                                        <div class="w-24 mask mask-squircle">
+                                            <img src={book.image} alt=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{book.name}</td>
+                                <td>{book.model}</td>
+                                <td>{book.bookingQuantity} DZN</td>
+                                <td>{book.total}$</td>
+                                <td><button className='btn btn-warning'>Pay Now</button></td>
+                                <td><button className='btn btn-error' >Cancel</button></td>
+                            </tr>)
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
         </div>
     );
 };
