@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import loginImage from '../../assets/loginBackgoundImge.jpg';
 import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { MdOutlineSecurity } from 'react-icons/md';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import SocialLogin from './SocialLogin';
+import Loading from '../SharedPages/Loading/Loading';
 
 
 
 
 const Login = () => {
+    const [errror, setErrror] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     // --------- exists user ---------- 
     const [user] = useAuthState(auth);
-    const email = user?.email;
+
     // ------------------ signIn account =-------------- 
     const [
         signInWithEmailAndPassword,
@@ -26,11 +31,27 @@ const Login = () => {
     // --------------react  form ----------
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    // submit form to login------------ 
-    const onSumit = async data => {
-        
-       await signInWithEmailAndPassword(data.email, data.password);
+    // navigate to other route ---------- 
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [navigate, user,from]);
 
+    // -------- loading --------- 
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    // ---------- error ----------
+    if (error) {
+        const errorMessage = error.message;
+        setErrror(errorMessage);
+    }
+
+    // -------submit form to login------------ 
+    const onSumit = async data => {
+        await signInWithEmailAndPassword(data.email, data.password);
     }
 
 
@@ -40,6 +61,8 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSumit)} className="form-control lg:w-1/4 md:w-1/3 w-full border p-5 my-10  mx-auto bg-base-100" >
                 {/* ------------ title ---------------- */}
                 <h1 className='text-center text-2xl my-6'>Log in Form</h1>
+                {/* divider  */}
+                <div className="divider"></div>
 
                 {/* -------- email address -------------- */}
                 <label>
@@ -91,11 +114,14 @@ const Login = () => {
                     {errors.password?.type === 'minLength' && <p>{errors.password.message} </p>}
                 </label>
 
+                {/* -------------------errror messsage ------------  */}
+                {errror}
+
                 {/* ------------- submit ----------------- */}
-                <input 
-                type="submit" 
-                value="Login" 
-                className='btn btn-primary w-full my-5'
+                <input
+                    type="submit"
+                    value="Login"
+                    className='btn btn-primary w-full my-5'
 
                 />
 
@@ -103,7 +129,11 @@ const Login = () => {
                     <span className='text-primary' ><Link to='/signup'> Registration </Link></span>
                 </p>
 
+                {/* =--------------------- ?social login------------- */}
+                <SocialLogin></SocialLogin>
             </form>
+
+
 
         </div>
     );

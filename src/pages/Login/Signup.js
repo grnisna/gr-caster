@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 import loginImage from '../../assets/loginBackgoundImge.jpg';
+import Loading from '../SharedPages/Loading/Loading';
+import SocialLogin from './SocialLogin';
 
 
 
 const Signup = () => {
-    // const from = location.state?.from?.pathname || '/';
-
-    // ------------send varification ---------------- 
-    const [sendEmailVerification, sending , varifyError] = useSendEmailVerification(auth);
-
-
+    const [errror, setErrror] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/purchase';
 
     // --------------react  form ----------
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -27,30 +27,48 @@ const Signup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-
-
     // update profile =-----------------------------
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    // navigate to other route 
+    useEffect(() => {
+        if (user) {
+            navigate(from,{replace:true});
+        }
+    }, [navigate, user,from]);
+
+    // loading ------------
+    if (loading || updating) {
+        return <Loading></Loading>
+    };
+
+    if (error || updateError) {
+        const errorMessage = error.message;
+        setErrror(errorMessage);
+    }
 
 
     // ---------------submit button --------------
     const onSubmit = async data => {
-        
+
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({displayName:data.name});
-        
+        await updateProfile({ displayName: data.name });
+
     };
     return (
-        <div  style={{ backgroundImage: `url(${loginImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <div style={{ backgroundImage: `url(${loginImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
 
 
             {/* ---------error handleing by react hook form ---------  */}
             <form onSubmit={handleSubmit(onSubmit)} className="form-control lg:w-1/4 md:w-1/3 w-full border p-5 my-10  mx-auto bg-base-100">
 
-            <h2 className="text-center text-2xl">
-                Registration Form
-            </h2>
-              
+                <h2 className="text-center text-2xl">
+                    Registration Form
+                </h2>
+
+                {/* divider  */}
+                <div className="divider"></div> 
+                
                 <div className="form-control w-full max-w-xs">
 
                     {/* ------------------name -------------  */}
@@ -96,7 +114,7 @@ const Signup = () => {
                         {errors.email?.type === 'pattern' && <span className='text-red-500' >{errors.email.message}</span>}
 
                     </label>
-                            {/* --------------password----------  */}
+                    {/* --------------password----------  */}
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
@@ -121,16 +139,22 @@ const Signup = () => {
                     </label>
                 </div>
 
-               
+                {/* ------------- error message =-------------------- */}
+                {errror}
+
+                {/*----------- submit input =------------------- */}
                 <input type="submit" className='btn btn-primary w-full max-w-xs ' value='registraion' />
 
                 <p>Already have Account?
                     <span className='text-primary' ><Link to='/login'> Login</Link></span>
                 </p>
 
+                {/* ------------ social login --------------  */}
+                <SocialLogin></SocialLogin>
+
             </form>
 
-            
+
 
         </div>
     );

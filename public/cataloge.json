@@ -6,6 +6,7 @@
         "model":"EDL Mini 1",
         "weight":"30kg plate",
         "price":300,
+        "available":15000,
         "image":"https://i.ibb.co/z6HKb11/toolsOne.jpg",
         "description":"It use for 30kg weight things. It is normal  but very flexible"
     },
@@ -15,6 +16,7 @@
         "model":"20111-201-72",
         "weight":"40kg plate",
         "price":400,
+        "available":17000,
         "image":"https://i.ibb.co/ZYYxpzF/toolsTwo.jpg",
         "description":"It use for 30kg weight things. It is normal  but very flexible"
     },
@@ -24,6 +26,7 @@
         "model":"26122H-262-86A",
         "weight":"45kg plate",
         "price":450,
+        "available":15000,
         "image":"https://i.ibb.co/Ns7JM7Q/tools-Three.jpg",
         "description":"It use for 40kg weight things. It is simple  but very flexible"
     },
@@ -33,6 +36,7 @@
         "model":"EDL Mini 1",
         "weight":"550kg plate",
         "price":800,
+        "available":14000,
         "image":"https://i.ibb.co/nMX51zz/tools-Four.jpg",
         "description":"It use for 60kg weight things. It is normal  but very flexible"
     },
@@ -42,6 +46,7 @@
         "model":"EDL Mini 1",
         "weight":"550kg plate",
         "price":800,
+        "available":10100,
         "image":"https://i.ibb.co/Ns7JM7Q/tools-Three.jpg",
         "description":"It use for 60kg weight things. It is normal  but very flexible"
     },
@@ -51,6 +56,7 @@
         "model":"EDL Mini 1",
         "weight":"550kg plate",
         "price":800,
+        "available":10000,
         "image":"https://i.ibb.co/z6HKb11/toolsOne.jpg",
         "description":"It use for 60kg weight things. It is normal  but very flexible"
     }

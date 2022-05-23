@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link,  NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/Logo (2).png';
 import auth from '../../../firebase.init';
 
@@ -30,11 +30,11 @@ const Navbar = ({ children }) => {
                             <li><NavLink to='/home'>HOME</NavLink></li>
                             <li><NavLink to='/purchase'>PURCHASE</NavLink></li>
                             <li><NavLink to='/blogs'>BLOGS</NavLink></li>
-                            <li><NavLink to='/dashboard'>DASHBOARD</NavLink></li>
                             <li>{user ? <>
+                                <NavLink to='/dashboard'>DASHBOARD</NavLink>
                                 <button onClick={handleLogOut} >LOGOUT</button>
                                 <span> {user.displayName} </span>
-                                 </>
+                            </>
                                 :
                                 <NavLink to='/login'>LOGIN</NavLink>}</li>
                         </ul>
