@@ -22,7 +22,7 @@ const Purchase = () => {
             </div>
 
             {
-                item && <BookNowModal item={item}></BookNowModal>
+                item && <BookNowModal item={item} setItem={setItem} ></BookNowModal>
             }
 
         </div>

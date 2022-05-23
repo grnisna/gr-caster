@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
 
-const BookNowModal = ({ item }) => {
+const BookNowModal = ({ item , setItem}) => {
 
     const [quantity, setQuantity] = useState(0);
 
@@ -12,17 +12,35 @@ const BookNowModal = ({ item }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onChage = data =>{
-        
-        console.log(data);
-        
-    }
-    const onBooked = async data => {
+
+
+    const onBooked =  (data,event) => {
+        console.log(event.target?.quantity?.value);
         const bookQuantity = parseInt(data?.quantity);
         const price = parseInt(data?.price);
         const totalPrice = bookQuantity * price;
         setQuantity(totalPrice);
-        console.log(data);
+        //-----------------
+        // set to DB 
+        const booking = {
+            itemId: _id,
+            name:name,
+            image:image,
+            price:price,
+            model:model,            
+            minbook:minbook,
+            bookingQuantity:bookQuantity,
+            email:user.email,
+            total:totalPrice
+        };
+
+        fetch('http://localhost:5000/booking',{
+            method:"POST",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(booking)
+        })
+        .then( res => res.json())
+        .then( data =>console.log(data))
 
     }
 
@@ -75,7 +93,7 @@ const BookNowModal = ({ item }) => {
                             placeholder={`Minimum Booked Qnt ${minbook} dzn`}
                             className="input my-2 input-bordered w-full max-w-xs"
                             
-                            onKeyDown={onChage}
+                            
                             
                             {...register("quantity", {
                                 required: {
@@ -101,9 +119,7 @@ const BookNowModal = ({ item }) => {
                         <br />
 
 
-                        <label>Total Price:</label><br />
-                        <input type="text" value={quantity} readOnly placeholder="total price" className="input my-2 input-bordered w-full max-w-xs" />
-
+                       
                         <div className="divider"></div>
                         <h3 className="text-lg font-bold text-center">personer infomation</h3><br />
 

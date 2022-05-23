@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -33,9 +33,9 @@ const Signup = () => {
     // navigate to other route 
     useEffect(() => {
         if (user) {
-            navigate(from,{replace:true});
+            navigate(from, { replace: true });
         }
-    }, [navigate, user,from]);
+    }, [navigate, user, from]);
 
     // loading ------------
     if (loading || updating) {
@@ -49,12 +49,11 @@ const Signup = () => {
 
 
     // ---------------submit button --------------
-    const onSubmit = async data => {
-
-        await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name });
-
+    const onSubmit = data => {
+        createUserWithEmailAndPassword(data.email, data.password);
+        updateProfile({ displayName: data.name });
     };
+
     return (
         <div style={{ backgroundImage: `url(${loginImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
 
@@ -67,8 +66,8 @@ const Signup = () => {
                 </h2>
 
                 {/* divider  */}
-                <div className="divider"></div> 
-                
+                <div className="divider"></div>
+
                 <div className="form-control w-full max-w-xs">
 
                     {/* ------------------name -------------  */}
@@ -87,7 +86,7 @@ const Signup = () => {
                         })}
                     />
                     <label className="label">
-                        {errors.text?.type === 'required' && <span className='text-red-500' >{errors.text.message}</span>}
+                        {errors.name?.type === 'required' && <span className='text-red-500' >{errors.name.message}</span>}
 
                     </label>
                     {/* ------------------email -------------  */}
