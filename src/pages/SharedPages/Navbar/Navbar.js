@@ -1,31 +1,47 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link,  NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/Logo (2).png';
+import auth from '../../../firebase.init';
 
 const Navbar = ({ children }) => {
-    return (
-        <div class="drawer drawer-end">
-            <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col">
-                {/* <!-- Navbar --> */}
-                <div class="w-full navbar bg-base-100">
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
-                    <div class="flex-1 px-2 mx-2 ">
-                        <img className='w-48' src={logo} alt="" />
+    const handleLogOut = () => {
+        signOut(auth);
+        navigate('/login');
+    }
+    return (
+        <div className="drawer drawer-end">
+            <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content flex flex-col">
+                {/* <!-- Navbar --> */}
+                <div className="w-full navbar bg-base-100">
+
+                    <div className="flex-1 px-2 mx-2 ">
+                        <Link to='/'><img className='w-48' src={logo} alt="" /></Link>
+
                     </div>
-                    <div class="flex-none hidden lg:block">
-                        <ul class="menu menu-horizontal">
+                    <div className="flex-none hidden lg:block">
+                        <ul className="menu menu-horizontal">
                             {/* <!-- Navbar menu content here --> */}
                             <li><NavLink to='/home'>HOME</NavLink></li>
                             <li><NavLink to='/purchase'>PURCHASE</NavLink></li>
                             <li><NavLink to='/blogs'>BLOGS</NavLink></li>
                             <li><NavLink to='/dashboard'>DASHBOARD</NavLink></li>
-                            <li><NavLink to='/login'>LOGIN</NavLink></li>
+                            <li>{user ? <>
+                                <button onClick={handleLogOut} >LOGOUT</button>
+                                <span> {user.displayName} </span>
+                                 </>
+                                :
+                                <NavLink to='/login'>LOGIN</NavLink>}</li>
                         </ul>
                     </div>
-                    <div class="flex-none lg:hidden">
-                        <label for="my-drawer-3" class="btn btn-square btn-ghost">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <div className="flex-none lg:hidden">
+                        <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </label>
                     </div>
                 </div>
@@ -33,9 +49,9 @@ const Navbar = ({ children }) => {
 
                 {children}
             </div>
-            <div class="drawer-side">
-                <label for="my-drawer-3" class="drawer-overlay"></label>
-                <ul class="menu  overflow-y-auto w-48 bg-base-100">
+            <div className="drawer-side">
+                <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+                <ul className="menu  overflow-y-auto w-48 bg-base-100">
                     {/* <!-- Sidebar content here --> */}
                     <li><NavLink to='/home'>HOME</NavLink></li>
                     <li><NavLink to='/purchase'>PURCHASE</NavLink></li>

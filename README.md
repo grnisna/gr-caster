@@ -7,4 +7,5 @@
 * tailwind
 * daisyUI
 * react - icon
-
+* firebase
+* react hooks form with validation

@@ -11,7 +11,7 @@ const BusinessSummary = () => {
             
                 <h1 className='lg:text-5xl md:text-5xl text-3xl text-center font-bold text-base-100 '>SUMMARY OF OUR BUSINESS</h1>
             
-            <div  class="lg:flex md:flex flex-none justify-center items-center ">
+            <div  className="lg:flex md:flex flex-none justify-center items-center ">
 
                 <div className='w-64 md:w-72 lg-w-96  bg-success p-5 rounded-tr-3xl rounded-bl-3xl lg:mx-5 md:mx-5 mx-auto   '>
                     <span className='text-7xl text-accent '><CgFlag className='text-center'/></span>

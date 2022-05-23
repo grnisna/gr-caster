@@ -3,7 +3,7 @@ import Tool from './Tool';
 
 const Tools = () => {
     const [tools,setTools] = useState([]);
-    console.log(tools);
+  
     useEffect(()=>{
         fetch('cataloge.json')
         .then(res => res.json())
