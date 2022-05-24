@@ -18,7 +18,7 @@ const Reviews = () => {
 
             <div className='md:flex lg:flex flex-none justify-center items-center gap-10'>
                 {
-                    reviews.map((review, index) => <Review
+                    reviews.slice(0,3).map((review, index) => <Review
                         key={index}
                         review={review}
                     ></Review>)

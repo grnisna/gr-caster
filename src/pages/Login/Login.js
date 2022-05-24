@@ -15,7 +15,7 @@ import useToken from '../../hooks/useToken';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [user1] = useAuthState(auth);
+    const [user1,loading1] = useAuthState(auth);
 
     const from = location?.state?.from?.pathname || '/';
 
@@ -31,13 +31,13 @@ const Login = () => {
     const [token] = useToken(user || user1);
 
     useEffect(() => {
-        if (user || user1) {
+        if (token) {
             navigate(from, { replace: true });
         }
     }, [token, navigate,from])
 
     //   -------loaading------
-    if (loading) {
+    if (loading || loading1) {
         return <Loading></Loading>
     };
 
