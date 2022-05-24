@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./pages/Dashboard/Checkout";
 import Payment from "./pages/Dashboard/Payment";
+import MyProfile from "./components/DashboardSection/MyProfile";
 
 // data-theme="cupcake" 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>} >
               <Route index element={<MyOrders></MyOrders>}></Route>
               <Route path='/dashboard/myreview' element={<AddReview></AddReview>} > </Route>
+              <Route path='/dashboard/myprofile' element={<MyProfile></MyProfile>} > </Route>
               <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
             </Route>
 

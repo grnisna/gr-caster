@@ -46,7 +46,7 @@ const AddReview = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                           
                             if (data.insertedId) {
                                 toast.success('successFully added your comment');
                                 reset();

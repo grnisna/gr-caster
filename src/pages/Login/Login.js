@@ -17,7 +17,7 @@ const Login = () => {
     const location = useLocation();
     const [user1,loading1] = useAuthState(auth);
 
-    const from = location?.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/';
 
     // ----------react form  ---------------
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -31,10 +31,10 @@ const Login = () => {
     const [token] = useToken(user || user1);
 
     useEffect(() => {
-        if (token) {
+        if (user || user1) {
             navigate(from, { replace: true });
         }
-    }, [token, navigate,from])
+    }, [ navigate,from,user , user1])
 
     //   -------loaading------
     if (loading || loading1) {
