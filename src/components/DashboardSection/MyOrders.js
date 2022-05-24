@@ -5,14 +5,26 @@ import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
 
+
     // ----------- get booking data from mongo db --------------
-    const { data: booking, isLoading } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
+    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
         method: 'GET', headers: { 'content-type': 'application/json' }
     }).then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
     };
+
+    const cancelBooking = (bookingId) => {
+        fetch(`http://localhost:5000/booking/${bookingId}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('deleteed Item:', data);
+                refetch();
+            })
+    }
 
 
 
@@ -62,18 +74,40 @@ const MyOrders = () => {
                                         <h2 className='text-success' >Paid</h2>}
                                 </td>
                                 <td>
-                                    {(book.price && book.paid) ? <p className='text-orange-800' >Transaction ID:{book.transactionId} </p> : <button className='btn btn-error' >Cancel</button>}
+                                    {(book.price && book.paid) ? <p className='text-orange-800' >Transaction ID:{book.transactionId} </p> : <div>
+                                        {/* --------------------------  */}
+                                        
+                                        <a href="#my-modal-2" class="btn btn-error">Cancel</a>
+                                        
+                                    <div class="modal" id="my-modal-2">
+                                        <div class="modal-box">
+                                            <h3 class="font-bold text-lg">Are you Sure Want Cancel??</h3>
+                                            <p class="py-4">If Cancel then you book again.</p>
+                                            <div class="modal-action flex justify-between items-center">
+                                            <button onClick={() => cancelBooking(book._id)} className='btn btn-error' >Yes</button>
+                                                <a href="#"  class="btn btn-success">NO</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* -----------------------------------  */}
+
+                                    
+                                </div> 
+                                    
+                                    
+                                    }
 
 
-                                </td>
+                            </td>
                             </tr>)
                         }
-                    </tbody>
+                </tbody>
 
-                </table>
-            </div>
-
+            </table>
         </div>
+
+        </div >
     );
 };
 

@@ -7,15 +7,15 @@ const Dashboard = () => {
         <div class="drawer drawer-mobile min-h-screen ">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
 
-            
+
             <div class="drawer-content py-10" style={{ backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                 {/* <!-- Page content here --> */}
                 <h1 className='text-center text-4xl font-extrabold text-accent' >About My Summary</h1>
                 <Outlet></Outlet>
-                
+
             </div>
-            
-            <div class="drawer-side ">
+
+            <div class="drawer-side w-44 lg:max-w-lg ">
                 <label for="my-drawer" class="drawer-overlay"></label>
                 <ul class="menu p-4   bg-slate-400 text-base-content ">
                     {/* <!-- Sidebar content here --> */}
@@ -28,7 +28,26 @@ const Dashboard = () => {
             </div>
         </div>
 
-        
+        // -----------------------------------------------------------------------
+        // <div class="drawer drawer-mobile">
+        //     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        //     <div class="drawer-content flex flex-col items-center justify-center">
+        //         {/* <!-- Page content here --> */}
+                
+
+        //     </div>
+        //     <div class="drawer-side">
+        //         <label for="my-drawer-2" class="drawer-overlay"></label>
+        //         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+        //             {/* <!-- Sidebar content here --> */}
+        //             <li><a>Sidebar Item 1</a></li>
+        //             <li><a>Sidebar Item 2</a></li>
+        //         </ul>
+
+        //     </div>
+        // </div>
+
+
     );
 };
 
