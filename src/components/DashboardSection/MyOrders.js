@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
 
-    const {id} = useParams();
-    const navigate = useNavigate();
-
     // ----------- get booking data from mongo db --------------
-    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
+    const { data: booking, isLoading } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
         method: 'GET', headers: { 'content-type': 'application/json' }
     }).then(res => res.json()));
 
@@ -49,7 +46,7 @@ const MyOrders = () => {
                                 <td>
                                     <div class="avatar">
                                         <div class="w-24 mask mask-squircle">
-                                            <img src={book.image} alt=""/>
+                                            <img src={book.image} alt="" />
                                         </div>
                                     </div>
                                 </td>
@@ -59,12 +56,16 @@ const MyOrders = () => {
                                 <td>{book.total}$</td>
                                 <td>
                                     {(book.price && !book.paid) &&
-                                      <Link to={`/dashboard/payment/${book._id}`} className='btn btn-warning'>Pay Now</Link>}
-                                
+                                        <Link to={`/dashboard/payment/${book._id}`} className='btn btn-warning'>Pay Now</Link>}
+
                                     {(book.price && book.paid) &&
-                                      <h2 className='text-success' >Paid</h2>}
+                                        <h2 className='text-success' >Paid</h2>}
                                 </td>
-                                <td><button className='btn btn-error' >Cancel</button></td>
+                                <td>
+                                    {(book.price && book.paid) ? <p className='text-orange-800' >Transaction ID:{book.transactionId} </p> : <button className='btn btn-error' >Cancel</button>}
+
+
+                                </td>
                             </tr>)
                         }
                     </tbody>

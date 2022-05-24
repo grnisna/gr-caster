@@ -40,7 +40,7 @@ const Payment = () => {
                 <div class="card w-full max-w-sm shadow-2xl bg-base-100">
                     <div class="card-body">
                         <Elements stripe={stripePromise}>
-                            <Checkout></Checkout>
+                            <Checkout booked={booked} ></Checkout>
                         </Elements>
                     </div>
                 </div>

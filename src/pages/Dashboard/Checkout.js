@@ -1,15 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { async } from '@firebase/util';
-import Loading from '../SharedPages/Loading/Loading';
 import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { useNavigate } from 'react-router-dom';
 
 
 
-const Checkout = () => {
+const Checkout = ({ booked }) => {
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+    const [working, setWorking] = useState(true);
+
+    const { total, name, _id, image, itemId, minbook, model, price, bookingQuantity } = booked;
     const [cardError, setCardError] = useState('');
     const stripe = useStripe();
     const elements = useElements();
+
+    const [clientSecret, setClientSecret] = useState('');
+
+    useEffect(() => {
+        fetch('http://localhost:5000/create-payment-intent', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ total })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data?.clientSecret) {
+                    setClientSecret(data.clientSecret);
+                }
+            })
+    }, [total])
+
+
 
 
     const handlePayment = async (event) => {
@@ -26,16 +50,64 @@ const Checkout = () => {
         }
 
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card });
+        const { error } = await stripe.createPaymentMethod({ type: 'card', card });
 
         if (error) {
+            setWorking(false);
             setCardError(error.message);
             toast.error(`${error.message}`);
+
         } else {
             setCardError('');
-            toast.success('Successfully payment completed')
+
         }
 
+
+        // ----------------- conform payment ------------- 
+        const { paymentIntent, paymentError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: user.email
+                    },
+                },
+            },
+        );
+
+
+        if (error || paymentError) {
+            setWorking(false);
+            setCardError(paymentError.message);
+            toast.error(`${paymentError.message}`);
+        }
+        else {
+            toast.success('Succefully payment done');
+            console.log(paymentIntent.id);
+            //    ----------------  set to mongodb -----------------
+            const paymentInfo = {
+                transactionId: paymentIntent.id,
+                name: name,
+                totalprice: total,
+                bookingQtn: bookingQuantity,
+                image: image
+            };
+
+            fetch(`http://localhost:5000/booking/${_id}`, {
+                method: 'PUT',
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(paymentInfo)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setWorking(false);
+                    console.log(data);
+
+                })
+
+            navigate('/dashboard');
+        }
 
 
 
@@ -62,7 +134,7 @@ const Checkout = () => {
                     }}F
                 </CardElement>
 
-                <button className='btn btn-primary hover:btn-warning w-full mt-10' type="submit" disabled={!stripe}> Pay now </button>
+                <button className='btn btn-primary hover:btn-warning w-full mt-10' type="submit" disabled={!stripe || !clientSecret}> Pay now </button>
             </form>
             <p className='text-error' >{cardError}</p>
         </div>
