@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import BookNowModal from './BookNowModal';
+
 
 const AllProduct = ({ tool,setItem }) => {
     
     
     const { name, image, description, price, weight, model, available, _id,minbook } = tool;
     
-
-    // useEffect(()=>{
-    // fetch(`http://localhost:5000/tool/${_id}`)
-    // .then( res => res.json())
-    // .then( data => setItem(data));
-    // } ,[_id])
 
     return (
         <div className="card bg-base-100 rounded-none border">

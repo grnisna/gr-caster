@@ -1,15 +1,25 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
-
+        const [user] = useAuthState(auth);
 
     // ----------- get booking data from mongo db --------------
-    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
-        method: 'GET', headers: { 'content-type': 'application/json' }
-    }).then(res => res.json()));
+    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+        method: 'GET', headers: { 'content-type': 'application/json',
+    'authorization':`Bearer ${localStorage.getItem('userToken')}` }
+    }).then(res => {
+        if(res.status === 101 || res.status === 403){
+            signOut(auth);
+            localStorage.removeItem('userToken');            
+        }
+        return res.json()
+    }));
 
     if (isLoading) {
         return <Loading></Loading>

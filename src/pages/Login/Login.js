@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import SocialLogin from './SocialLogin';
 import Loading from '../SharedPages/Loading/Loading';
+import useToken from '../../hooks/useToken';
 
 
 
@@ -27,11 +28,13 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [token] = useToken(user || user1);
+
     useEffect(() => {
         if (user || user1) {
             navigate(from, { replace: true });
         }
-    }, [user, navigate,from,user1])
+    }, [token, navigate,from])
 
     //   -------loaading------
     if (loading) {

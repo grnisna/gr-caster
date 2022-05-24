@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/Logo (2).png';
 import auth from '../../../firebase.init';
-import { BiMenuAltLeft } from 'react-icons/bi';
+
 
 const Navbar = ({ children }) => {
     const [user] = useAuthState(auth);
@@ -13,6 +13,7 @@ const Navbar = ({ children }) => {
     const handleLogOut = () => {
         signOut(auth);
         navigate('/login');
+        localStorage.removeItem('userToken');
     }
     return (
         <div className="drawer drawer-end ">

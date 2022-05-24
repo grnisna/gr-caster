@@ -7,11 +7,13 @@ import auth from '../../firebase.init';
 import loginImage from '../../assets/loginBackgoundImge.jpg';
 import Loading from '../SharedPages/Loading/Loading';
 import SocialLogin from './SocialLogin';
+import useToken from '../../hooks/useToken';
+import { async } from '@firebase/util';
 
 
 
 const Signup = () => {
-    const [errror, setErrror] = useState('');
+    // const [errror, setErrror] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/purchase';
@@ -30,28 +32,29 @@ const Signup = () => {
     // update profile =-----------------------------
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+    const [token] = useToken(user);
     // navigate to other route 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [navigate, user, from]);
+    }, [navigate, token, from]);
 
     // loading ------------
     if (loading || updating) {
         return <Loading></Loading>
     };
 
-    if (error || updateError) {
-        const errorMessage = error.message;
-        setErrror(errorMessage);
-    }
+    // if (error || updateError) {
+    //     const errorMessage = error.message;
+    //     setErrror(errorMessage);
+    // }
 
 
     // ---------------submit button --------------
-    const onSubmit = data => {
-        createUserWithEmailAndPassword(data.email, data.password);
-        updateProfile({ displayName: data.name });
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
     };
 
     return (
@@ -139,7 +142,7 @@ const Signup = () => {
                 </div>
 
                 {/* ------------- error message =-------------------- */}
-                {errror}
+                {(error || updateError) && <p className='text-error'>{(error.message || updateError.message)} </p>}
 
                 {/*----------- submit input =------------------- */}
                 <input type="submit" className='btn btn-primary w-full max-w-xs ' value='registraion' />
