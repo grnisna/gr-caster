@@ -19,10 +19,9 @@ const Dashboard = () => {
                 <label for="my-drawer" class="drawer-overlay"></label>
                 <ul class="menu p-4   bg-slate-400 text-base-content ">
                     {/* <!-- Sidebar content here --> */}
+                    <h2 className='text-2xl text-center text-accent' >Navigation</h2>
+                    <div className='divider m-0 p-0' ></div>
                     <li><Link to='/dashboard'>My orders</Link></li>
-                    <li><Link to={'/dashboard/myreview'}>Add Comments</Link></li>
-                    <li><Link to={'/dashboard/myreview'}>Add Comments</Link></li>
-                    <li><Link to={'/dashboard/myreview'}>Add Comments</Link></li>
                     <li><Link to={'/dashboard/myreview'}>Add Comments</Link></li>
 
                 </ul>

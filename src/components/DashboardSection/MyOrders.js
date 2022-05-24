@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
+
+    const {id} = useParams();
+    const navigate = useNavigate();
 
     // ----------- get booking data from mongo db --------------
     const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch('http://localhost:5000/booking', {
@@ -12,6 +16,8 @@ const MyOrders = () => {
     if (isLoading) {
         return <Loading></Loading>
     };
+
+
 
 
     return (
@@ -51,7 +57,13 @@ const MyOrders = () => {
                                 <td>{book.model}</td>
                                 <td>{book.bookingQuantity} DZN</td>
                                 <td>{book.total}$</td>
-                                <td><button className='btn btn-warning'>Pay Now</button></td>
+                                <td>
+                                    {(book.price && !book.paid) &&
+                                      <Link to={`/dashboard/payment/${book._id}`} className='btn btn-warning'>Pay Now</Link>}
+                                
+                                    {(book.price && book.paid) &&
+                                      <h2 className='text-success' >Paid</h2>}
+                                </td>
                                 <td><button className='btn btn-error' >Cancel</button></td>
                             </tr>)
                         }

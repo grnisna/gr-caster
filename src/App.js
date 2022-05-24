@@ -17,6 +17,8 @@ import RequireAuth from "./pages/SharedPages/RequireAuth/RequireAuth";
 // toastify ------------
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Checkout from "./pages/Dashboard/Checkout";
+import Payment from "./pages/Dashboard/Payment";
 
 // data-theme="cupcake" 
 function App() {
@@ -38,6 +40,7 @@ function App() {
             <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>} >
               <Route index element={<MyOrders></MyOrders>}></Route>
               <Route path='/dashboard/myreview' element={<AddReview></AddReview>} > </Route>
+              <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
             </Route>
 
             <Route path="/login" element={<Login></Login>} ></Route>
