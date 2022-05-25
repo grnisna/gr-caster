@@ -65,11 +65,11 @@ const AllUsers = () => {
                                 <td>
                                     {!user.role ?  <div>
 
-                                        <a href="#my-modal-3" class="btn btn-error">Delete</a>
+                                        <a href="#my-modal-3" class="btn btn-error">Remove</a>
 
                                         <div class="modal" id="my-modal-3">
                                             <div class="modal-box">
-                                                <h3 class="font-bold text-lg text-center">Are you Sure Want DELETE user?</h3>
+                                                <h3 class="font-bold text-lg text-center">Are you Sure Want Remove user?</h3>
                                                 <p class="py-4 text-center">If delete  then you lost this user</p>
                                                 <div class="modal-action flex justify-between items-center">
                                                     <a href="#" class="btn btn-success">NO</a>
