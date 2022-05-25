@@ -24,6 +24,7 @@ import AllUsers from "./components/DashboardSection/AllUsers";
 import ManageItems from "./components/DashboardSection/ManageItems";
 import AddNewItem from "./components/DashboardSection/AddNewItem";
 import MyProfile from "./components/DashboardSection/MyProfile";
+import NotFound from "./pages/NotFoundPage/NotFound";
 
 
 // data-theme="cupcake" 
@@ -59,6 +60,8 @@ function App() {
 
             <Route path="/login" element={<Login></Login>} ></Route>
             <Route path="/signup" element={<Signup></Signup>} ></Route>
+
+            <Route path="*" element={<NotFound></NotFound>} ></Route>
 
           </Routes>
           <Footer></Footer>
