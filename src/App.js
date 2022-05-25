@@ -20,6 +20,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./pages/Dashboard/Checkout";
 import Payment from "./pages/Dashboard/Payment";
 import MyProfile from "./components/DashboardSection/MyProfile";
+import AllUsers from "./components/DashboardSection/AllUsers";
+import ManageItems from "./components/DashboardSection/ManageItems";
+import AddNewItem from "./components/DashboardSection/AddNewItem";
 
 // data-theme="cupcake" 
 function App() {
@@ -39,10 +42,16 @@ function App() {
 
             {/* nested route  */}
             <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>} >
+              {/* users panel   */}
               <Route index element={<MyOrders></MyOrders>}></Route>
               <Route path='/dashboard/myreview' element={<AddReview></AddReview>} > </Route>
               <Route path='/dashboard/myprofile' element={<MyProfile></MyProfile>} > </Route>
               <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
+
+              {/* admin panel  */}
+              <Route path='/dashboard/admin' element={<AllUsers></AllUsers>} > </Route>
+              <Route path='/dashboard/manageitems' element={<ManageItems></ManageItems>} > </Route>
+              <Route path='/dashboard/addnewitem' element={<AddNewItem></AddNewItem>} > </Route>
             </Route>
 
             <Route path="/login" element={<Login></Login>} ></Route>

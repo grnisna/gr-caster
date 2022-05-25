@@ -3,25 +3,29 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyProfile = () => {
+    
     const [user] = useAuthState(auth);
     const email = user.email;
     const [profiles, setProfiles] = useState({});
-console.log(profiles._id);
+    
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const { data: myProfiles, isLoading, refetch } = useQuery(['myprofile',email], () => fetch(`http://localhost:5000/profile?email=${email}`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-            'authorization': `Bearer ${localStorage.getItem('userToken')}`
-        }
-    })
-        .then(res => res.json()));
+    
+
+    // const { data: myProfiles, isLoading, refetch } = useQuery(['myprofile',email], () => fetch(`http://localhost:5000/profile/${profileId}`, {
+    //     method: 'PUT',
+    //     headers: {
+    //         'content-type': 'application/json',
+    //         'authorization': `Bearer ${localStorage.getItem('userToken')}`
+    //     }
+    // })
+    //     .then(res => res.json()));
     // ----------------------------------------------------------------------------- 
     useEffect(() => {
         fetch(`http://localhost:5000/profile?email=${email}`, {
@@ -50,6 +54,7 @@ console.log(profiles._id);
         const email = data.email;
         const education = data.education;
         const location = data.location;
+        const social = data.social;
 
         const image = data.image[0];
         const formData = new FormData();
@@ -68,7 +73,8 @@ console.log(profiles._id);
                         name: name,
                         email: email,
                         education: education,
-                        location: location
+                        location: location,
+                        social:social
                     }
 
 
@@ -101,17 +107,18 @@ console.log(profiles._id);
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-                <div className="text-center lg:text-left">
+                <div className="text-center lg:text-left ">
 
 
                     < div className="card w-96 bg-base-100 shadow-xl">
 
-                        <figure><img className='rounded-fullw-24  ring ring-primary ring-offset-base-100 ring-offset-2' src={profiles?.image} alt="profile pic" /></figure>
+                        <figure><img className='rounded w-32 mt-10  ring ring-primary ring-offset-base-100 ring-offset-2' src={profiles?.image} alt="profile pic" /></figure>
 
                         <div className="card-body">
                             <h2 className="card-title"> Name: {profiles?.name} </h2>
                             <p>My Eduction : {profiles?.education}</p>
                             <p>My location : {profiles?.location}</p>
+                            <p>Linkedin  : {profiles?.social}</p>
 
                         </div>
                     </div>
@@ -213,6 +220,24 @@ console.log(profiles._id);
 
                                 <label>
                                     {errors.location?.type === 'required' && <span className='text-error'>{errors.location.message} </span>}
+                                </label>
+                            </div>
+
+                            <div class="form-control">
+                                <input type="text"
+                                    placeholder="Linkedin profile links "
+                                    class="input input-bordered"
+                                    {...register('social', {
+                                        required: {
+                                            value: true,
+                                            message: 'Need Linkedin profile links'
+                                        }
+                                    })}
+
+                                />
+
+                                <label>
+                                    {errors.social?.type === 'required' && <span className='text-error'>{errors.social.message} </span>}
                                 </label>
                             </div>
 

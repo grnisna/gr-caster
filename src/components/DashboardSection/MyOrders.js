@@ -7,16 +7,18 @@ import auth from '../../firebase.init';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const MyOrders = () => {
-        const [user] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     // ----------- get booking data from mongo db --------------
     const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
-        method: 'GET', headers: { 'content-type': 'application/json',
-    'authorization':`Bearer ${localStorage.getItem('userToken')}` }
+        method: 'GET', headers: {
+            'content-type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('userToken')}`
+        }
     }).then(res => {
-        if(res.status === 101 || res.status === 403){
+        if (res.status === 101 || res.status === 403) {
             signOut(auth);
-            localStorage.removeItem('userToken');            
+            localStorage.removeItem('userToken');
         }
         return res.json()
     }));
@@ -86,36 +88,36 @@ const MyOrders = () => {
                                 <td>
                                     {(book.price && book.paid) ? <p className='text-orange-800' >Transaction ID:{book.transactionId} </p> : <div>
                                         {/* --------------------------  */}
-                                        
+
                                         <a href="#my-modal-2" class="btn btn-error">Cancel</a>
-                                        
-                                    <div class="modal" id="my-modal-2">
-                                        <div class="modal-box">
-                                            <h3 class="font-bold text-lg">Are you Sure Want Cancel??</h3>
-                                            <p class="py-4">If Cancel then you book again.</p>
-                                            <div class="modal-action flex justify-between items-center">
-                                            <button onClick={() => cancelBooking(book._id)} className='btn btn-error' >Yes</button>
-                                                <a href="#"  class="btn btn-success">NO</a>
+
+                                        <div class="modal" id="my-modal-2">
+                                            <div class="modal-box">
+                                                <h3 class="font-bold text-lg text-center">Are you Sure Want Cancel??</h3>
+                                                <p class="py-4 text-center">If Cancel then you book again.</p>
+                                                <div class="modal-action flex justify-between items-center">
+                                                    <button onClick={() => cancelBooking(book._id)} className='btn btn-error' >Yes</button>
+                                                    <a href="#" class="btn btn-success">NO</a>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        {/* -----------------------------------  */}
+
+
                                     </div>
 
-                                    {/* -----------------------------------  */}
 
-                                    
-                                </div> 
-                                    
-                                    
                                     }
 
 
-                            </td>
+                                </td>
                             </tr>)
                         }
-                </tbody>
+                    </tbody>
 
-            </table>
-        </div>
+                </table>
+            </div>
 
         </div >
     );
