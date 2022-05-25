@@ -1,19 +1,69 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const AddNewItem = () => {
-    const { register, formState: { errors } } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+
+    const imgBBkey = '5fbcdb5a428c028af61f3741571ad322';
+    const newItemSumbit = async data => {
+        const name = data.name;
+        const model = data.model;
+        const weight = data.weight;
+        const price = data.price;
+        const available = data.available;
+        const minbook = data.minbook;
+        const description = data.description;
+
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgBBkey}`;
+        fetch(url, { method: 'POST', body: formData })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const img = data.data.url;
+                    const newItem = {
+                        name: name,
+                        model: model,
+                        weight: weight,
+                        price: price,
+                        available: available,
+                        minbook: minbook,
+                        image: img,
+                        description: description
+                    }
+
+                    fetch('http://localhost:5000/tool', {
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify(newItem)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                toast.success('successfully added Item');
+                                reset();
+                            } else {
+                                toast.error('failed to Add new Item')
+                            }
+                        })
+                }
+            })
+    }
 
     return (
         <>
 
-            <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Add New Item</h1>
+            <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-3'>Add New Item</h1>
 
-            <div class="card w-full bg-base-100 shadow-xl">
+            <div class="card w-full bg-base-100 shadow-xl ">
 
-                <div class="card-body lg:max-w-96 rounded bg-slate-400 mx-auto">
+                <div class="card-body lg:max-w-96 rounded bg-slate-400 mx-auto mb-10">
 
-                    <form >
+                    <form onSubmit={handleSubmit(newItemSumbit)} >
                         <div className='flex '>
                             <div className='mr-20'>
                                 {/* name */}
@@ -119,7 +169,7 @@ const AddNewItem = () => {
                                         type="number"
                                         placeholder="Available Quantity "
                                         class="input input-bordered w-full max-w-xs"
-                                        {...register('weight', {
+                                        {...register('available', {
                                             required: {
                                                 value: true,
                                                 message: 'Require item available'
@@ -202,9 +252,9 @@ const AddNewItem = () => {
 
                         </div>
                         {/* submit  */}
-                        
-                            <input className='w-full btn btn-primary  hover:btn-warning' type="submit" value='ADD ITEM' />
-                       
+
+                        <input className='w-full btn btn-primary  hover:btn-warning' type="submit" value='ADD ITEM' />
+
                     </form>
 
                 </div>
