@@ -16,7 +16,7 @@ const Dashboard = () => {
 
             <div class="drawer-content py-10" style={{ backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                 {/* <!-- Page content here --> */}
-                <h1 className='text-center text-4xl font-extrabold text-accent' >About My Summary</h1>
+                
                 <Outlet></Outlet>
 
             </div>

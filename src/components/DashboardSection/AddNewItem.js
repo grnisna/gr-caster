@@ -2,9 +2,11 @@ import React from 'react';
 
 const AddNewItem = () => {
     return (
-        <div>
-            <h1>Add New Item</h1>
-        </div>
+        <>
+            
+            <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Add New Item</h1>
+
+        </>
     );
 };
 

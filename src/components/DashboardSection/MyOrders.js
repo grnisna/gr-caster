@@ -42,6 +42,8 @@ const MyOrders = () => {
 
 
     return (
+        <>
+        <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Add New Item</h1>
         <div className='bg-base-100 ronded-lg'>
             <h1 className='text-4xl font-bold text-center text-primary my-10 '>My All Order {booking.length}</h1>
             <div >
@@ -120,6 +122,7 @@ const MyOrders = () => {
             </div>
 
         </div >
+        </>
     );
 };
 

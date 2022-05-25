@@ -105,6 +105,8 @@ const MyProfile = () => {
     }
 
     return (
+        <>
+        <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>My Profile</h1>
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
                 <div className="text-center lg:text-left ">
@@ -255,6 +257,7 @@ const MyProfile = () => {
                 </div>
             </div>
         </div >
+        </>
     );
 };
 

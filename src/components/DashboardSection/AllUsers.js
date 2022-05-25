@@ -33,10 +33,10 @@ const AllUsers = () => {
 
 
     return (
-        
+        <>
+        <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>All Registered User ({allUser?.length})</h1>
 
         <div className='bg-base-100 ronded-lg'>
-            <h1 className='text-4xl font-bold text-center text-primary my-10 '>My All User {allUser?.length}</h1>
             <div >
 
                 <table class="table w-full">
@@ -97,6 +97,7 @@ const AllUsers = () => {
             </div>
 
         </div >
+        </>
     );
 };
 

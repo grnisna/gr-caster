@@ -66,6 +66,9 @@ const AddReview = () => {
     }
     
     return (
+        <>
+        <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Add Review</h1>
+
         <div class="hero min-h-screen bg-base-200">
             <form onSubmit={handleSubmit(handleReview)}>
 
@@ -125,6 +128,7 @@ const AddReview = () => {
             </form>
 
         </div>
+        </>
     );
 };
 
