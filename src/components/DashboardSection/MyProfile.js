@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
@@ -9,21 +10,36 @@ import Loading from '../../pages/SharedPages/Loading/Loading';
 const MyProfile = () => {
     const [user] = useAuthState(auth);
     const email = user.email;
-
+    const [profiles, setProfiles] = useState({});
+console.log(profiles._id);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const { data: myProfile, isLoading, refetch } = useQuery('myprofile', () => fetch(`http://localhost:5000/profile?email=${email}`, {
-        method: 'GET',
+    const { data: myProfiles, isLoading, refetch } = useQuery(['myprofile',email], () => fetch(`http://localhost:5000/profile?email=${email}`, {
+        method: 'PUT',
         headers: {
             'content-type': 'application/json',
             'authorization': `Bearer ${localStorage.getItem('userToken')}`
         }
     })
         .then(res => res.json()));
+    // ----------------------------------------------------------------------------- 
+    useEffect(() => {
+        fetch(`http://localhost:5000/profile?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('userToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then( data => setProfiles(data))
+    }, [email])
+    // ----------------------------------------------------------------------------- 
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
 
 
     const imageApiKey = '5fbcdb5a428c028af61f3741571ad322';
@@ -90,12 +106,12 @@ const MyProfile = () => {
 
                     < div className="card w-96 bg-base-100 shadow-xl">
 
-                            <figure><img className='rounded-fullw-24  ring ring-primary ring-offset-base-100 ring-offset-2' src={myProfile?.image} alt="profile pic" /></figure>
-                        
+                        <figure><img className='rounded-fullw-24  ring ring-primary ring-offset-base-100 ring-offset-2' src={profiles?.image} alt="profile pic" /></figure>
+
                         <div className="card-body">
-                            <h2 className="card-title"> Name: {myProfile?.name} </h2>
-                            <p>My Eduction : {myProfile?.education}</p>
-                            <p>My location : {myProfile?.location}</p>
+                            <h2 className="card-title"> Name: {profiles?.name} </h2>
+                            <p>My Eduction : {profiles?.education}</p>
+                            <p>My location : {profiles?.location}</p>
 
                         </div>
                     </div>
@@ -119,7 +135,7 @@ const MyProfile = () => {
                                     {...register('image', {
                                         required: {
                                             value: true,
-                                            message: 'Need to upload YOur comment photo'
+                                            message: 'Need to upload Your photo'
                                         }
                                     })}
                                 />
@@ -204,7 +220,10 @@ const MyProfile = () => {
 
 
                             <div class="form-control mt-6">
-                                <button type='submit' class="btn btn-primary">Submit</button>
+                                {
+                                    profiles._id ? <button type='submit' class="btn btn-primary">update</button> :<button type='submit' class="btn btn-primary">Submit</button>
+                                }
+                                
                             </div>
                         </div>
                     </form>
