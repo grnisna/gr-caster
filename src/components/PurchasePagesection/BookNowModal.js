@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const BookNowModal = ({ item , setItem}) => {
+const BookNowModal = ({ item, setItem }) => {
     const navigate = useNavigate();
 
     const [quantity, setQuantity] = useState(0);
 
     const [user] = useAuthState(auth);
-    const { name, image,  price,  model, available, _id, minbook } = item;
+    const { name, image, price, model, available, _id, minbook } = item;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
 
-    const onBooked =  (data,event) => {
-        
+    const onBooked = (data, event) => {
+
         const bookQuantity = parseInt(data?.quantity);
         const price = parseInt(data?.price);
         const totalPrice = bookQuantity * price;
@@ -27,25 +27,30 @@ const BookNowModal = ({ item , setItem}) => {
         // set to DB 
         const booking = {
             itemId: _id,
-            name:name,
-            image:image,
-            price:price,            
-            model:model,            
-            minbook:minbook,
-            bookingQuantity:bookQuantity,
-            email:user.email,
-            total:totalPrice
+            name: name,
+            image: image,
+            price: price,
+            model: model,
+            minbook: minbook,
+            bookingQuantity: bookQuantity,
+            email: user.email,
+            total: totalPrice
         };
 
-        fetch('https://aqueous-cove-84612.herokuapp.com/booking',{
-            method:"POST",
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(booking)
+        fetch('https://aqueous-cove-84612.herokuapp.com/booking', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(booking)
         })
-        .then( res => res.json())
-        .then( data =>console.log(data));
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    toast.success(`Successfully added ${name}`)
+                }
+            });
 
-        toast.success('Successfully Booked');
+
         setItem(null);
 
         navigate('/dashboard');
@@ -77,7 +82,7 @@ const BookNowModal = ({ item , setItem}) => {
                             placeholder="Type here"
                             className="input my-2 input-bordered w-full max-w-xs"
                             name='unitPrice'
-                            
+
                             {
                             ...register("price", {
                                 required: {
@@ -100,9 +105,9 @@ const BookNowModal = ({ item , setItem}) => {
                             type="number"
                             placeholder={`Minimum Booked Qnt ${minbook} dzn`}
                             className="input my-2 input-bordered w-full max-w-xs"
-                            
-                            
-                            
+
+
+
                             {...register("quantity", {
                                 required: {
                                     value: true,
@@ -127,7 +132,7 @@ const BookNowModal = ({ item , setItem}) => {
                         <br />
 
 
-                       
+
                         <div className="divider"></div>
                         <h3 className="text-lg font-bold text-center">personer infomation</h3><br />
 

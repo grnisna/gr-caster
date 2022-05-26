@@ -12,7 +12,7 @@ const News = () => {
         <>
             <div className="divider text-5xl text-primary font-bold my-10">CASTER NEWS </div>
             <div className='grid lg:grid-cols-3 lg:ml-10'>
-                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card my-8 card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg1} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">How to choose EDL Casters</h2>
@@ -23,7 +23,7 @@ const News = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card my-8 card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg2} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Classification of EDL Casters</h2>
@@ -34,7 +34,7 @@ const News = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card my-8 card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg3} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Identification Method for Official Genuine Casters of EDL</h2>

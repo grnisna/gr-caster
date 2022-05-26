@@ -10,7 +10,7 @@ const Tools = () => {
             <h1 className='divider text-primary text-center text-5xl font-bold my-12'>Products</h1>
             
 
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 ml-10 ' >
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 lg:ml-10 ' >
                 {
                     tools.slice(0,6).map(tool => <Tool 
                         key={tool._id}

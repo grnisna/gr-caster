@@ -91,7 +91,7 @@ const AddReview = () => {
                                     className="input input-bordered"
                                     {...register('image', {
                                         required: {
-                                            defaultValue: true,
+                                            value: true,
                                             message: 'Need to upload YOur comment photo'
                                         }
                                     })}

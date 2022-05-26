@@ -84,7 +84,7 @@ const Checkout = ({ booked }) => {
         }
         else {
             toast.success('Succefully payment done');
-            console.log(paymentIntent.id);
+           
             //    ----------------  set to mongodb -----------------
             const paymentInfo = {
                 transactionId: paymentIntent.id,
@@ -102,7 +102,7 @@ const Checkout = ({ booked }) => {
                 .then(res => res.json())
                 .then(data => {
                     setWorking(false);
-                    console.log(data);
+                    
 
                 })
 
