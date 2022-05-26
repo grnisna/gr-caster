@@ -38,6 +38,7 @@ const Navbar = ({ children }) => {
                             <li><NavLink to='/home'>HOME</NavLink></li>
                             <li><NavLink to={`/purchase`}>ALL PRODUCT</NavLink></li>
                             <li><NavLink to='/blogs'>BLOGS</NavLink></li>
+                            <li><NavLink to='/portfolio'>PORTFOLIO</NavLink></li>
 
                             <li>{user ? <>
                                 <NavLink to='/dashboard'>DASHBOARD</NavLink>

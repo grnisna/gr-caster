@@ -25,6 +25,7 @@ import ManageItems from "./components/DashboardSection/ManageItems";
 import AddNewItem from "./components/DashboardSection/AddNewItem";
 import MyProfile from "./components/DashboardSection/MyProfile";
 import NotFound from "./pages/NotFoundPage/NotFound";
+import Portfolio from "./pages/Portfolio/Portfolio";
 
 
 // data-theme="cupcake" 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/purchase" element={<RequireAuth><Purchase></Purchase></RequireAuth>} ></Route>
             <Route path="/allproduct/:id" element={<AllProduct></AllProduct>} ></Route>
             <Route path="/blogs" element={<Blogs></Blogs>} ></Route>
+            <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
 
             {/* nested route  */}
             <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>} >
