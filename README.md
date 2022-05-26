@@ -14,3 +14,6 @@
 * react-router
 * react-toast 
 * payment integrated by stripe
+
+
+# DATABASE: MongoDB
