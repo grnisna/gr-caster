@@ -6,7 +6,7 @@ import Loading from '../../pages/SharedPages/Loading/Loading';
 const AllUsers = () => {
 
     const { data: allUser, isLoading, refetch } = useQuery('allUser', () => fetch('https://aqueous-cove-84612.herokuapp.com/admin').then(res => res.json()));
-    
+    console.log(allUser);
     if(isLoading){
         return <Loading></Loading>
     }
@@ -14,7 +14,7 @@ const AllUsers = () => {
  // make an user to admin ---------------------
 
     const makeAdmin = userEmail =>{
-        fetch(`https://aqueous-cove-84612.herokuapp.com/admin/${userEmail}`,{
+        fetch(`http://localhost:5000/admin?email=${userEmail}`,{
             method:'PUT',
             headers:{'authorization':`Bearer ${localStorage.getItem('userToken')}`}
         })
