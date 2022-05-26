@@ -6,16 +6,14 @@ import Loading from '../../pages/SharedPages/Loading/Loading';
 const ManageAllOrder = () => {
     const [shipped, setShipped] = useState(false);
 
-
-
-
+    // get all booking --------------------------
     const { data: allOrder, isLoading, refetch } = useQuery('allOrder', () => fetch('http://localhost:5000/manageorder').then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
     }
 
-
+// updata status ---------------------------
     const handleStatus = (id) => {
         fetch(`http://localhost:5000/manageorder/${id}`, {
             method: 'PUT',
@@ -23,14 +21,32 @@ const ManageAllOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) {
-
+                
+                if(data.$set.shipped){
                     toast.success('successFully');
                     refetch();
                     setShipped(true);
                 }
             })
     }
+
+
+    // delete unpaid order ------------------
+    const deleteOrder = (id) => {
+        fetch(`http://localhost:5000/manageorder/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('successfully deleted');
+                refetch();
+            })
+    }
+
+
+
+
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
@@ -52,13 +68,17 @@ const ManageAllOrder = () => {
 
                     {allOrder.map((order, index) => <tr key={order._id}>
                         <th>{index + 1} </th>
+                        {/*  */}
                         <td>
-                            {
-                                order.paid ? <button onClick={() => handleStatus(order._id)} className='btn btn-warning btn-xs'>
-                                    {!shipped ? 'pending..' : 'shipped'}
-                                </button>
-                                    : <p className='text-error' >not paid</p>
-                            }
+                            {(order.paid && !order.shipped) && <button onClick={() => handleStatus(order._id)}  className='btn btn-warning'>pending...</button>}
+                            {(order.paid && order.shipped) && <h2 className='text-xl text-success font-bold'>Shipped</h2>}
+                            {(!order.paid && !order.shipped) && <>
+
+                            <h2 className='text-xl text-error font-bold'>Un-Paid</h2>
+                            <button onClick={()=>deleteOrder(order._id)} className='btn btn-error btn-xs'>Cancel booked</button>
+                            
+                            </>}
+                        
                         </td>
                         <td>{order.email}</td>
                         <td>

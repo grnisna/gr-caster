@@ -33,7 +33,7 @@ const MyOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('deleteed Item:', data);
+                
                 refetch();
             })
     }

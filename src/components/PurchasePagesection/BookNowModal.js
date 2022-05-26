@@ -44,7 +44,7 @@ const BookNowModal = ({ item, setItem }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                
                 if (data.insertedId) {
                     toast.success(`Successfully added ${name}`)
                 }
