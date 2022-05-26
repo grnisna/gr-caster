@@ -62,7 +62,7 @@ const ManageItems = () => {
                                             <h3 className="font-bold text-lg text-center">Want to remove {tool.name}</h3>
                                             <div className="modal-action flex justify-center">
                                                 <button onClick={() => removeItem(tool._id)} className='btn btn-error'>Remove</button>
-                                                <a href="#" className="btn btn-success">NO</a>
+                                                <a href="#1" className="btn btn-success">NO</a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
@@ -72,7 +71,7 @@ const AllUsers = () => {
                                                 <h3 className="font-bold text-lg text-center">Are you Sure Want Remove user?</h3>
                                                 <p className="py-4 text-center">If delete  then you lost this user</p>
                                                 <div className="modal-action flex justify-between items-center">
-                                                    <a href="#" className="btn btn-success">NO</a>
+                                                    <a href="#1" className="btn btn-success">NO</a>
                                                     <button  className='btn btn-error' >Yes</button>
                                                 </div>
                                             </div>

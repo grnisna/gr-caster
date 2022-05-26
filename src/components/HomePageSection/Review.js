@@ -18,11 +18,11 @@ const Review = ({ review }) => {
                     <div  className='flex justify-evenly' >
                         <p>Ratting: <span className='text-warning'> {ratting} </span></p>
                         <div className="rating">
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
                         </div>
                     </div>
 

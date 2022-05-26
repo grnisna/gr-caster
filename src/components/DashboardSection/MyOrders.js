@@ -99,7 +99,7 @@ const MyOrders = () => {
                                                 <p className="py-4 text-center">If Cancel then you book again.</p>
                                                 <div className="modal-action flex justify-between items-center">
                                                     <button onClick={() => cancelBooking(book._id)} className='btn btn-error' >Yes</button>
-                                                    <a href="#" className="btn btn-success">NO</a>
+                                                    <a href="#1" className="btn btn-success">NO</a>
                                                 </div>
                                             </div>
                                         </div>

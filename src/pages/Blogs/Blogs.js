@@ -6,7 +6,7 @@ const Blogs = () => {
             <div className='lg:p-48 p-2'>
                 <h1 className='text-primary py-2 lg:text-5xl text-2xl text-center'>Important <span className='text-warning font-bold'>Question</span>  and simplify <span className='text-green-700 font-bold'>Answer</span>  </h1>
                 <div className='divider' ></div>
-                <div tabindex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm lg:text-xl font-medium text-base-100">
                         How to improve The performance of a react application?
                     </div>
@@ -22,7 +22,7 @@ const Blogs = () => {
                         </p>
                     </div>
                 </div>
-                <div tabindex="0" className="collapse  collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse  collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm lg:text-xl font-medium text-base-100 ">
                         What is Different Way to manage a state in React app ?
                     </div>
@@ -37,7 +37,7 @@ const Blogs = () => {
                         </p>
                     </div>
                 </div>
-                <div tabindex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm lg:text-xl font-medium text-base-100">
                         How Does prototypical inheritance work?
                     </div>
@@ -48,7 +48,7 @@ const Blogs = () => {
                         </p>
                     </div>
                 </div>
-                <div tabindex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm lg:text-xl font-medium text-base-100">
                         Why don't set the state directly?
                     </div>
@@ -60,7 +60,7 @@ const Blogs = () => {
                         </p>
                     </div>
                 </div>
-                <div tabindex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm lg:text-xl font-medium text-base-100">
                         What is unit test ? Why should write unit test ?
                     </div>
@@ -72,16 +72,14 @@ const Blogs = () => {
                         </p>
                     </div>
                 </div>
-                <div tabindex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
+                <div tabIndex="0" className="collapse collapse-arrow  border border-base-300 bg-accent rounded-box">
                     <div className="collapse-title text-sm font-medium text-base-100 lg:text-xl">
                         You have an array of products. Each object has a name, price description. <br />
                         How you will implement a search to find products by name ?
                     </div>
                     <div className="collapse-content text-base-100">
                         <p>
-                            <div className="mockup-code bg-primary text-primary-content">
-                                <pre><code>const products </code></pre>
-                            </div>
+                            Cannot Write the array of object . if can, i write here.
                         </p>
                     </div>
                 </div>

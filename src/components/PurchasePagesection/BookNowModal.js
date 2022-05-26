@@ -11,14 +11,14 @@ const BookNowModal = ({ item , setItem}) => {
     const [quantity, setQuantity] = useState(0);
 
     const [user] = useAuthState(auth);
-    const { name, image, description, price, weight, model, available, _id, minbook } = item;
+    const { name, image,  price,  model, available, _id, minbook } = item;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
 
     const onBooked =  (data,event) => {
-        console.log(event.target?.quantity?.value);
+        
         const bookQuantity = parseInt(data?.quantity);
         const price = parseInt(data?.price);
         const totalPrice = bookQuantity * price;
@@ -65,15 +65,15 @@ const BookNowModal = ({ item , setItem}) => {
                         <img className='w-24 mx-auto border rounded-full' src={image} alt="" />
 
                         <label>Product name:</label><br />
-                        <input type="text" value={name} placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
+                        <input type="text" defaultValue={name} placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
 
                         <label>Product Model:</label><br />
-                        <input type="text" value={model} placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
+                        <input type="text" defaultValue={model} placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
 
                         <label>Per dozen Price:</label><br />
                         <input
                             type="text"
-                            value={price}
+                            defaultValue={price}
                             placeholder="Type here"
                             className="input my-2 input-bordered w-full max-w-xs"
                             name='unitPrice'
@@ -132,7 +132,7 @@ const BookNowModal = ({ item , setItem}) => {
                         <h3 className="text-lg font-bold text-center">personer infomation</h3><br />
 
                         <label>Your Email:</label><br />
-                        <input type="email" value={user.email} disabled placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
+                        <input type="email" defaultValue={user.email} disabled placeholder="Type here" className="input my-2 input-bordered w-full max-w-xs" /><br />
 
                         <label>Cell-Phone number:</label><br />
                         <input type="text" placeholder="Phone number" className="input my-2 input-bordered w-full max-w-xs" /><br />
@@ -140,7 +140,7 @@ const BookNowModal = ({ item , setItem}) => {
                         <label>Address:</label><br />
                         <input type="textarea" placeholder="Your Address" className="input my-2 input-bordered w-full max-w-xs" /><br />
 
-                        <input type="submit" value="Booked" className="btn btn-primary my-2 input-bordered w-full max-w-xs" />
+                        <input type="submit" defaultValue="Booked" className="btn btn-primary my-2 input-bordered w-full max-w-xs" />
 
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import commentImage from '../../assets/comments.jpg';
@@ -15,8 +15,8 @@ const AddReview = () => {
 
 
 
-        const name = event.target.name.value;
-        const comment = event.target.review.value;
+        const name = event.target.name.defaultValue;
+        const comment = event.target.review.defaultValue;
 
         const image = data.image[0];
         const formData = new FormData();
@@ -82,7 +82,7 @@ const AddReview = () => {
                             <h1 className='text-2xl text-green-700 text-center'>Deploy Your Own Opinion</h1>
 
                             <div className="form-control">
-                                <input type="text" name='name' placeholder="Your Name" value={user.displayName} readOnly className="input input-bordered" />
+                                <input type="text" name='name' placeholder="Your Name" defaultValue={user.displayName} readOnly className="input input-bordered" />
                             </div>
 
                             <div className="form-control">
@@ -91,7 +91,7 @@ const AddReview = () => {
                                     className="input input-bordered"
                                     {...register('image', {
                                         required: {
-                                            value: true,
+                                            defaultValue: true,
                                             message: 'Need to upload YOur comment photo'
                                         }
                                     })}
@@ -111,11 +111,11 @@ const AddReview = () => {
                             <div className=" flex">
                                 <p htmlFor="">Ratting: </p>
                                 <div className="rating">
-                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" defaultChecked />
                                 </div>
                             </div>
 

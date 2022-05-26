@@ -17,9 +17,9 @@ import RequireAuth from "./pages/SharedPages/RequireAuth/RequireAuth";
 // toastify ------------
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Checkout from "./pages/Dashboard/Checkout";
 import Payment from "./pages/Dashboard/Payment";
 
+import ManageAllOrder from "./components/DashboardSection/ManageAllOrder";
 import AllUsers from "./components/DashboardSection/AllUsers";
 import ManageItems from "./components/DashboardSection/ManageItems";
 import AddNewItem from "./components/DashboardSection/AddNewItem";
@@ -58,6 +58,7 @@ function App() {
               <Route path='/dashboard/admin' element={<AllUsers></AllUsers>} > </Route>
               <Route path='/dashboard/manageitems' element={<ManageItems></ManageItems>} > </Route>
               <Route path='/dashboard/addnewitem' element={<AddNewItem></AddNewItem>} > </Route>
+              <Route path='/dashboard/manageallorder' element={<ManageAllOrder></ManageAllOrder>} > </Route>
             </Route>
 
             <Route path="/login" element={<Login></Login>} ></Route>

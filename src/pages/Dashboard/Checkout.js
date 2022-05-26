@@ -12,7 +12,7 @@ const Checkout = ({ booked }) => {
     const navigate = useNavigate();
     const [working, setWorking] = useState(true);
 
-    const { total, name, _id, image, itemId, minbook, model, price, bookingQuantity } = booked;
+    const { total, name, _id, image,     bookingQuantity } = booked;
     const [cardError, setCardError] = useState('');
     const stripe = useStripe();
     const elements = useElements();
@@ -108,9 +108,6 @@ const Checkout = ({ booked }) => {
 
             navigate('/dashboard');
         }
-
-
-
 
 
     }

@@ -11,14 +11,14 @@ const stripePromise = loadStripe('pk_test_51L0n2qCi5PWr8KPCurMmZmhlJEx8ZEoP5qVQy
 const Payment = () => {
     const { id } = useParams();
     // data load form DB ----------------
-    const { data: booked, isLoading, isError, refetch } = useQuery(['booked', id], () => fetch(`https://aqueous-cove-84612.herokuapp.com/booking/${id}`).then(res => res.json()))
+    const { data: booked, isLoading } = useQuery(['booked', id], () => fetch(`https://aqueous-cove-84612.herokuapp.com/booking/${id}`).then(res => res.json()))
 
 
     if (isLoading) {
         return <Loading></Loading>
     };
 
-    const { image, itemId, minbook, model, name, price, total, _id,bookingQuantity } = booked;
+    const { image,   model, name,  total, bookingQuantity } = booked;
 
     return (
 
