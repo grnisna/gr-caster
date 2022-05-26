@@ -36,7 +36,7 @@ const AddNewItem = () => {
                         description: description
                     }
 
-                    fetch('http://localhost:5000/tool', {
+                    fetch('https://aqueous-cove-84612.herokuapp.com/tool', {
                         method: 'POST',
                         headers: { 'content-type': 'application/json' },
                         body: JSON.stringify(newItem)
@@ -59,22 +59,22 @@ const AddNewItem = () => {
 
             <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-3'>Add New Item</h1>
 
-            <div class="card w-full bg-base-100 shadow-xl ">
+            <div className="card w-full bg-base-100 shadow-xl ">
 
-                <div class="card-body lg:max-w-96 rounded bg-slate-400 mx-auto mb-10">
+                <div className="card-body lg:max-w-96 rounded bg-slate-400 mx-auto mb-10">
 
                     <form onSubmit={handleSubmit(newItemSumbit)} >
                         <div className='flex '>
                             <div className='mr-20'>
                                 {/* name */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Item Name</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Item Name</span>
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Item Name"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('name', {
                                             required: {
                                                 value: true,
@@ -82,22 +82,22 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.name?.type === 'required' && <span class="label-text-alt text-error">{errors.name.message} </span>}
+                                    <label className="label">
+                                        {errors.name?.type === 'required' && <span className="label-text-alt text-error">{errors.name.message} </span>}
 
                                     </label>
                                 </div>
 
                                 {/* model */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Item Model name</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Item Model name</span>
 
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Model name"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('model', {
                                             required: {
                                                 value: true,
@@ -105,23 +105,23 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.model?.type === 'required' && <span class="label-text-alt text-error">{errors.model.message} </span>}
+                                    <label className="label">
+                                        {errors.model?.type === 'required' && <span className="label-text-alt text-error">{errors.model.message} </span>}
 
                                     </label>
 
                                 </div>
 
                                 {/* weight */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Weight</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Weight</span>
 
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Weight"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('weight', {
                                             required: {
                                                 value: true,
@@ -129,21 +129,21 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.weight?.type === 'required' && <span class="label-text-alt text-error">{errors.weight.message} </span>}
+                                    <label className="label">
+                                        {errors.weight?.type === 'required' && <span className="label-text-alt text-error">{errors.weight.message} </span>}
 
                                     </label>
                                 </div>
                                 {/* price */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Price</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Price</span>
 
                                     </label>
                                     <input
                                         type="number"
                                         placeholder="Price"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('price', {
                                             required: {
                                                 value: true,
@@ -151,8 +151,8 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.price?.type === 'required' && <span class="label-text-alt text-error">{errors.price.message} </span>}
+                                    <label className="label">
+                                        {errors.price?.type === 'required' && <span className="label-text-alt text-error">{errors.price.message} </span>}
 
                                     </label>
                                 </div>
@@ -160,15 +160,15 @@ const AddNewItem = () => {
 
                             <div>
                                 {/* available */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Available Quantity (dozen)</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Available Quantity (dozen)</span>
 
                                     </label>
                                     <input
                                         type="number"
                                         placeholder="Available Quantity "
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('available', {
                                             required: {
                                                 value: true,
@@ -176,21 +176,21 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.available?.type === 'required' && <span class="label-text-alt text-error">{errors.available.message} </span>}
+                                    <label className="label">
+                                        {errors.available?.type === 'required' && <span className="label-text-alt text-error">{errors.available.message} </span>}
 
                                     </label>
                                 </div>
                                 {/* minbook */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Minimum Book Quantity(dozen) </span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Minimum Book Quantity(dozen) </span>
 
                                     </label>
                                     <input
                                         type="number"
                                         placeholder="Minimum book Quantity"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('minbook', {
                                             required: {
                                                 value: true,
@@ -198,21 +198,21 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.minbook?.type === 'required' && <span class="label-text-alt text-error">{errors.minbook.message} </span>}
+                                    <label className="label">
+                                        {errors.minbook?.type === 'required' && <span className="label-text-alt text-error">{errors.minbook.message} </span>}
 
                                     </label>
                                 </div>
                                 {/* description */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Feature to Items</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Feature to Items</span>
 
                                     </label>
                                     <input
                                         type="textarea"
                                         placeholder="Item Description"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('description', {
                                             required: {
                                                 value: true,
@@ -220,21 +220,21 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.description?.type === 'required' && <span class="label-text-alt text-error">{errors.description.message} </span>}
+                                    <label className="label">
+                                        {errors.description?.type === 'required' && <span className="label-text-alt text-error">{errors.description.message} </span>}
 
                                     </label>
                                 </div>
                                 {/* image */}
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Item Image</span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Item Image</span>
 
                                     </label>
                                     <input
                                         type="file"
                                         placeholder="Type here"
-                                        class="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs"
                                         {...register('image', {
                                             required: {
                                                 value: true,
@@ -242,8 +242,8 @@ const AddNewItem = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.image?.type === 'required' && <span class="label-text-alt text-error">{errors.image.message} </span>}
+                                    <label className="label">
+                                        {errors.image?.type === 'required' && <span className="label-text-alt text-error">{errors.image.message} </span>}
 
                                     </label>
                                 </div>

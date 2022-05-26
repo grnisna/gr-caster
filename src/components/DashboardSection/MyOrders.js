@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
 
     // ----------- get booking data from mongo db --------------
-    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+    const { data: booking, isLoading, refetch } = useQuery('booking', () => fetch(`https://aqueous-cove-84612.herokuapp.com/booking?email=${user.email}`, {
         method: 'GET', headers: {
             'content-type': 'application/json',
             'authorization': `Bearer ${localStorage.getItem('userToken')}`
@@ -28,7 +28,7 @@ const MyOrders = () => {
     };
 
     const cancelBooking = (bookingId) => {
-        fetch(`http://localhost:5000/booking/${bookingId}`, {
+        fetch(`https://aqueous-cove-84612.herokuapp.com/booking/${bookingId}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -48,7 +48,7 @@ const MyOrders = () => {
             <h1 className='text-4xl font-bold text-center text-primary my-10 '>My All Order {booking.length}</h1>
             <div >
 
-                <table class="table w-full">
+                <table className="table w-full">
 
                     <thead>
                         <tr>
@@ -70,8 +70,8 @@ const MyOrders = () => {
                             >
                                 <th>{index + 1}</th>
                                 <td>
-                                    <div class="avatar">
-                                        <div class="w-24 mask mask-squircle">
+                                    <div className="avatar">
+                                        <div className="w-24 mask mask-squircle">
                                             <img src={book.image} alt="" />
                                         </div>
                                     </div>
@@ -91,15 +91,15 @@ const MyOrders = () => {
                                     {(book.price && book.paid) ? <p className='text-orange-800' >Transaction ID:{book.transactionId} </p> : <div>
                                         {/* --------------------------  */}
 
-                                        <a href="#my-modal-2" class="btn btn-error">Cancel</a>
+                                        <a href="#my-modal-2" className="btn btn-error">Cancel</a>
 
-                                        <div class="modal" id="my-modal-2">
-                                            <div class="modal-box">
-                                                <h3 class="font-bold text-lg text-center">Are you Sure Want Cancel??</h3>
-                                                <p class="py-4 text-center">If Cancel then you book again.</p>
-                                                <div class="modal-action flex justify-between items-center">
+                                        <div className="modal" id="my-modal-2">
+                                            <div className="modal-box">
+                                                <h3 className="font-bold text-lg text-center">Are you Sure Want Cancel??</h3>
+                                                <p className="py-4 text-center">If Cancel then you book again.</p>
+                                                <div className="modal-action flex justify-between items-center">
                                                     <button onClick={() => cancelBooking(book._id)} className='btn btn-error' >Yes</button>
-                                                    <a href="#" class="btn btn-success">NO</a>
+                                                    <a href="#" className="btn btn-success">NO</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -37,7 +37,7 @@ const BookNowModal = ({ item , setItem}) => {
             total:totalPrice
         };
 
-        fetch('http://localhost:5000/booking',{
+        fetch('https://aqueous-cove-84612.herokuapp.com/booking',{
             method:"POST",
             headers:{"content-type":"application/json"},
             body:JSON.stringify(booking)

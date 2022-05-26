@@ -3,41 +3,45 @@ import newImg1 from '../../assets/newsImg1.jpg';
 import newImg2 from '../../assets/newsImg2.jpg';
 import newImg3 from '../../assets/newsimg3.jpg';
 
+
+//https://aqueous-cove-84612.herokuapp.com/
+
+//https://aqueous-cove-84612.herokuapp.com/
 const News = () => {
     return (
         <>
-            <div class="divider text-5xl text-primary font-bold my-10">CASTER NEWS </div>
+            <div className="divider text-5xl text-primary font-bold my-10">CASTER NEWS </div>
             <div className='grid lg:grid-cols-3 lg:ml-10'>
-                <div class="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg1} alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">How to choose EDL Casters</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">How to choose EDL Casters</h2>
                         <p>
                             How to quickly and accurately select the desired EDL Casters</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Read more...</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Read more...</button>
                         </div>
                     </div>
                 </div>
-                <div class="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg2} alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Classification of EDL Casters</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">Classification of EDL Casters</h2>
                         <p>
                             According to the usage scenarios, EDL casters can be divided into two categorie……</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Read more...</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Read more...</button>
                         </div>
                     </div>
                 </div>
-                <div class="card card-compact lg:w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact lg:w-96 bg-base-100 shadow-xl">
                     <figure><img src={newImg3} alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Identification Method for Official Genuine Casters of EDL</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">Identification Method for Official Genuine Casters of EDL</h2>
                         <p>
                             There are lots of casters pretending to be the brand of EDL in the market now, o……</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Read more...</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Read more...</button>
                         </div>
                     </div>
                 </div>

@@ -10,20 +10,20 @@ const Dashboard = () => {
     const [admin] = useAdmin(user);
     console.log(admin);
     return (
-        <div class="drawer drawer-mobile min-h-screen ">
-            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div className="drawer drawer-mobile min-h-screen ">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
 
-            <div class="drawer-content py-10" style={{ backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+            <div className="drawer-content py-10" style={{ backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                 {/* <!-- Page content here --> */}
                 
                 <Outlet></Outlet>
 
             </div>
 
-            <div class="drawer-side w-44 lg:max-w-lg ">
-                <label for="my-drawer" class="drawer-overlay"></label>
-                <ul class="menu p-4   bg-slate-400 text-base-content ">
+            <div className="drawer-side w-44 lg:max-w-lg ">
+                <label for="my-drawer" className="drawer-overlay"></label>
+                <ul className="menu p-4   bg-slate-400 text-base-content ">
                     {/* <!-- Sidebar content here --> */}
                     <h2 className='text-2xl text-center text-accent' >Navigation</h2>
                     <div className='divider m-0 p-0' ></div>

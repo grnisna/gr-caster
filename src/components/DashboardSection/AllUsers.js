@@ -6,7 +6,7 @@ import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const AllUsers = () => {
 
-    const { data: allUser, isLoading, refetch } = useQuery('allUser', () => fetch('http://localhost:5000/admin').then(res => res.json()));
+    const { data: allUser, isLoading, refetch } = useQuery('allUser', () => fetch('https://aqueous-cove-84612.herokuapp.com/admin').then(res => res.json()));
     
     if(isLoading){
         return <Loading></Loading>
@@ -15,7 +15,7 @@ const AllUsers = () => {
  // make an user to admin ---------------------
 
     const makeAdmin = userEmail =>{
-        fetch(`http://localhost:5000/admin/${userEmail}`,{
+        fetch(`https://aqueous-cove-84612.herokuapp.com/admin/${userEmail}`,{
             method:'PUT',
             headers:{'authorization':`Bearer ${localStorage.getItem('userToken')}`}
         })
@@ -39,7 +39,7 @@ const AllUsers = () => {
         <div className='bg-base-100 ronded-lg'>
             <div >
 
-                <table class="table w-full">
+                <table className="table w-full">
 
                     <thead>
                         <tr>
@@ -65,14 +65,14 @@ const AllUsers = () => {
                                 <td>
                                     {!user.role ?  <div>
 
-                                        <a href="#my-modal-3" class="btn btn-error">Remove</a>
+                                        <a href="#my-modal-3" className="btn btn-error">Remove</a>
 
-                                        <div class="modal" id="my-modal-3">
-                                            <div class="modal-box">
-                                                <h3 class="font-bold text-lg text-center">Are you Sure Want Remove user?</h3>
-                                                <p class="py-4 text-center">If delete  then you lost this user</p>
-                                                <div class="modal-action flex justify-between items-center">
-                                                    <a href="#" class="btn btn-success">NO</a>
+                                        <div className="modal" id="my-modal-3">
+                                            <div className="modal-box">
+                                                <h3 className="font-bold text-lg text-center">Are you Sure Want Remove user?</h3>
+                                                <p className="py-4 text-center">If delete  then you lost this user</p>
+                                                <div className="modal-action flex justify-between items-center">
+                                                    <a href="#" className="btn btn-success">NO</a>
                                                     <button  className='btn btn-error' >Yes</button>
                                                 </div>
                                             </div>

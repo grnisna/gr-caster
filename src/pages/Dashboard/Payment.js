@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L0n2qCi5PWr8KPCurMmZmhlJEx8ZEoP5qVQy
 const Payment = () => {
     const { id } = useParams();
     // data load form DB ----------------
-    const { data: booked, isLoading, isError, refetch } = useQuery(['booked', id], () => fetch(`http://localhost:5000/booking/${id}`).then(res => res.json()))
+    const { data: booked, isLoading, isError, refetch } = useQuery(['booked', id], () => fetch(`https://aqueous-cove-84612.herokuapp.com/booking/${id}`).then(res => res.json()))
 
 
     if (isLoading) {
@@ -22,11 +22,11 @@ const Payment = () => {
 
     return (
 
-        <div class="py-10 min-h-screen bg-base-100 ">
-            <div class=" lg:flex items-center justify-center">
-                <div class="text-center lg:text-left mr-10">
-                    <div class="avatar">
-                        <div class="w-32 rounded">
+        <div className="py-10 min-h-screen bg-base-100 ">
+            <div className=" lg:flex items-center justify-center">
+                <div className="text-center lg:text-left mr-10">
+                    <div className="avatar">
+                        <div className="w-32 rounded">
                             <img src={image} alt="" />
                         </div>
                     </div>
@@ -37,8 +37,8 @@ const Payment = () => {
                     <h2 className='text-xl text-warning '>Total Price: <span className='text-purple-500'>{total}$</span>  </h2>
 
                 </div>
-                <div class="card w-full max-w-sm shadow-2xl bg-base-100">
-                    <div class="card-body">
+                <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body">
                         <Elements stripe={stripePromise}>
                             <Checkout booked={booked} ></Checkout>
                         </Elements>

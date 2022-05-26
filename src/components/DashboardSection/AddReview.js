@@ -39,7 +39,7 @@ const AddReview = () => {
 
                     };
 
-                    fetch('http://localhost:5000/review',{
+                    fetch('https://aqueous-cove-84612.herokuapp.com/review',{
                         method:'POST',
                         headers:{'content-type':'application/json'},
                         body:JSON.stringify(review)
@@ -69,26 +69,26 @@ const AddReview = () => {
         <>
         <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Add Review</h1>
 
-        <div class="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200">
             <form onSubmit={handleSubmit(handleReview)}>
 
 
-                <div class="hero-content flex-col lg:flex-row-reverse">
-                    <div class="text-center lg:text-left">
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
                         <img src={commentImage} alt="" />
                     </div>
-                    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div class="card-body">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div className="card-body">
                             <h1 className='text-2xl text-green-700 text-center'>Deploy Your Own Opinion</h1>
 
-                            <div class="form-control">
-                                <input type="text" name='name' placeholder="Your Name" value={user.displayName} readOnly class="input input-bordered" />
+                            <div className="form-control">
+                                <input type="text" name='name' placeholder="Your Name" value={user.displayName} readOnly className="input input-bordered" />
                             </div>
 
-                            <div class="form-control">
+                            <div className="form-control">
                                 <input type="file"
                                     placeholder="Your Name"
-                                    class="input input-bordered"
+                                    className="input input-bordered"
                                     {...register('image', {
                                         required: {
                                             value: true,
@@ -104,23 +104,23 @@ const AddReview = () => {
                             </div>
 
 
-                            <div class="form-control">
-                                <textarea class="textarea textarea-bordered" name='review' placeholder="Your Comments"></textarea>
+                            <div className="form-control">
+                                <textarea className="textarea textarea-bordered" name='review' placeholder="Your Comments"></textarea>
                             </div>
 
-                            <div class=" flex">
+                            <div className=" flex">
                                 <p htmlFor="">Ratting: </p>
-                                <div class="rating">
-                                    <input type="radio" name="rating1" class="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" class="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" class="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" class="mask mask-star-2 bg-orange-400" checked />
-                                    <input type="radio" name="rating1" class="mask mask-star-2 bg-orange-400" checked />
+                                <div className="rating">
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating1" className="mask mask-star-2 bg-orange-400" checked />
                                 </div>
                             </div>
 
-                            <div class="form-control mt-6">
-                                <button type='submit' class="btn btn-primary">Add Review</button>
+                            <div className="form-control mt-6">
+                                <button type='submit' className="btn btn-primary">Add Review</button>
                             </div>
                         </div>
                     </div>

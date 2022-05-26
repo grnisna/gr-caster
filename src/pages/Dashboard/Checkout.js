@@ -20,7 +20,7 @@ const Checkout = ({ booked }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://aqueous-cove-84612.herokuapp.com/create-payment-intent', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ total })
@@ -94,7 +94,7 @@ const Checkout = ({ booked }) => {
                 image: image
             };
 
-            fetch(`http://localhost:5000/booking/${_id}`, {
+            fetch(`https://aqueous-cove-84612.herokuapp.com/booking/${_id}`, {
                 method: 'PUT',
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(paymentInfo)

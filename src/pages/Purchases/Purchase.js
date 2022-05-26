@@ -12,7 +12,7 @@ const Purchase = () => {
             <h1 className='divider text-primary text-center text-5xl font-bold my-12'>All Items</h1>
 
 
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-10 ml-10 ' >
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-10 lg:ml-10 ' >
                 {
                     tools.map(tool => <AllProduct
                         key={tool._id}

@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import Loading from '../../pages/SharedPages/Loading/Loading';
 
 const ManageItems = () => {
-    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch('http://localhost:5000/tool').then(res => res.json()));
+    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch('https://aqueous-cove-84612.herokuapp.com/tool').then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
     }
     const removeItem = (id) => {
-        fetch(`http://localhost:5000/tool/${id}`, {
+        fetch(`https://aqueous-cove-84612.herokuapp.com/tool/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -23,8 +23,8 @@ const ManageItems = () => {
     return (
         <>
             <h1 className='text-center text-4xl text-primary font-extrabold bg-base-100 py-10'>Manage Products ({tools.length})</h1>
-            <div class="overflow-x-auto">
-                <table class="table table-zebra w-full">
+            <div className="overflow-x-auto">
+                <table className="table table-zebra w-full">
 
                     <thead>
                         <tr>
@@ -44,8 +44,8 @@ const ManageItems = () => {
                             >
                                 <th>{index + 1} </th>
                                 <td>
-                                    <div class="avatar bg-slate-400">
-                                        <div class="w-24 rounded-xl ">
+                                    <div className="avatar bg-slate-400">
+                                        <div className="w-24 rounded-xl ">
                                             <img src={tool.image} alt='items' />
                                         </div>
                                     </div>
@@ -55,14 +55,14 @@ const ManageItems = () => {
                                 <td>{tool.available}</td>
                                 <td>
 
-                                    <a href="#my-modal-10" class="btn btn-error">Remove</a>
+                                    <a href="#my-modal-10" className="btn btn-error">Remove</a>
 
-                                    <div class="modal" id="my-modal-10">
-                                        <div class="modal-box">
-                                            <h3 class="font-bold text-lg text-center">Want to remove {tool.name}</h3>
-                                            <div class="modal-action flex justify-center">
+                                    <div className="modal" id="my-modal-10">
+                                        <div className="modal-box">
+                                            <h3 className="font-bold text-lg text-center">Want to remove {tool.name}</h3>
+                                            <div className="modal-action flex justify-center">
                                                 <button onClick={() => removeItem(tool._id)} className='btn btn-error'>Remove</button>
-                                                <a href="#" class="btn btn-success">NO</a>
+                                                <a href="#" className="btn btn-success">NO</a>
                                             </div>
                                         </div>
                                     </div>

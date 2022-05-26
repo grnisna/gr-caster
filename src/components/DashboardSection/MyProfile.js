@@ -123,13 +123,13 @@ const MyProfile = () => {
 
                         <form onSubmit={handleSubmit(handleProfile)}>
 
-                            <div class="lg:p-5 p-2">
+                            <div className="lg:p-5 p-2">
                                 <h1 className='text-2xl text-green-700 text-center'>SetUp Profile</h1>
 
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="file"
                                         placeholder="Your photo"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
 
                                         {...register('image', {
                                             required: {
@@ -143,10 +143,10 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="text"
                                         placeholder="Your Name"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         {...register('name', {
                                             required: {
                                                 value: true,
@@ -160,10 +160,10 @@ const MyProfile = () => {
                                         {errors.name?.type === 'required' && <span className='text-error'>{errors.name.message} </span>}
                                     </label>
                                 </div>
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="email"
                                         placeholder="Your Email Address"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         value={email}
                                         readOnly
                                         {...register('email', {
@@ -179,10 +179,10 @@ const MyProfile = () => {
                                         {errors.email?.type === 'required' && <span className='text-error'>{errors.email.message} </span>}
                                     </label>
                                 </div>
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="text"
                                         placeholder="Your Education Qualification"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         {...register('education', {
                                             required: {
                                                 value: true,
@@ -197,10 +197,10 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="text"
                                         placeholder="Yoru Location"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         {...register('location', {
                                             required: {
                                                 value: true,
@@ -215,10 +215,10 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control my-2">
+                                <div className="form-control my-2">
                                     <input type="text"
                                         placeholder="Linkedin profile links "
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         {...register('social', {
                                             required: {
                                                 value: true,
@@ -236,8 +236,8 @@ const MyProfile = () => {
 
 
 
-                                <div class="form-control mt-6">
-                                    <button type='submit' class="btn btn-primary">Submit</button>
+                                <div className="form-control mt-6">
+                                    <button type='submit' className="btn btn-primary">Submit</button>
 
 
                                 </div>
