@@ -103,7 +103,7 @@ const MyProfile = () => {
                     <div className="text-center lg:text-left ">
 
 
-                        < div className="card w-96 bg-base-100 shadow-xl">
+                        < div className="card lg:w-96 bg-base-100 shadow-xl">
 
                             <figure><img className='rounded w-32 mt-10  ring ring-primary ring-offset-base-100 ring-offset-2' src={profiles?.image} alt="profile pic" /></figure>
 
@@ -119,14 +119,14 @@ const MyProfile = () => {
                     </div>
 
                     {/* --------------------------- profile form -------------------------------  */}
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 lg:w-full max-w-sm shadow-2xl bg-base-100">
 
                         <form onSubmit={handleSubmit(handleProfile)}>
 
-                            <div class="card-body">
+                            <div class="lg:p-5 p-2">
                                 <h1 className='text-2xl text-green-700 text-center'>SetUp Profile</h1>
 
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="file"
                                         placeholder="Your photo"
                                         class="input input-bordered"
@@ -143,7 +143,7 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="text"
                                         placeholder="Your Name"
                                         class="input input-bordered"
@@ -160,7 +160,7 @@ const MyProfile = () => {
                                         {errors.name?.type === 'required' && <span className='text-error'>{errors.name.message} </span>}
                                     </label>
                                 </div>
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="email"
                                         placeholder="Your Email Address"
                                         class="input input-bordered"
@@ -179,7 +179,7 @@ const MyProfile = () => {
                                         {errors.email?.type === 'required' && <span className='text-error'>{errors.email.message} </span>}
                                     </label>
                                 </div>
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="text"
                                         placeholder="Your Education Qualification"
                                         class="input input-bordered"
@@ -197,7 +197,7 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="text"
                                         placeholder="Yoru Location"
                                         class="input input-bordered"
@@ -215,7 +215,7 @@ const MyProfile = () => {
                                     </label>
                                 </div>
 
-                                <div class="form-control">
+                                <div class="form-control my-2">
                                     <input type="text"
                                         placeholder="Linkedin profile links "
                                         class="input input-bordered"

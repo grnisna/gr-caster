@@ -65,10 +65,17 @@ const Navbar = ({ children }) => {
                 <ul className="menu  overflow-y-auto w-48 bg-base-100">
                     {/* <!-- Sidebar content here --> */}
                     <li><NavLink to='/home'>HOME</NavLink></li>
-                    <li><NavLink to='/purchase'>ALL PRODUCTS</NavLink></li>
+                    <li><NavLink to={`/purchase`}>ALL PRODUCT</NavLink></li>
                     <li><NavLink to='/blogs'>BLOGS</NavLink></li>
-                    <li><NavLink to='/dashboard'>DASHBOARD</NavLink></li>
-                    <li><NavLink to='/login'>LOGIN</NavLink></li>
+                    <li><NavLink to='/portfolio'>PORTFOLIO</NavLink></li>
+
+                    <li>{user ? <>
+                        <NavLink to='/dashboard'>DASHBOARD</NavLink>
+                        <button onClick={handleLogOut} >LOGOUT</button>
+                        <span> {user.displayName} </span>
+                    </>
+                        :
+                        <NavLink to='/login'>LOGIN</NavLink>}</li>
 
 
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { AiFillStar } from 'react-icons/ai';
+import React from 'react';
+
 
 
 const Review = ({ review }) => {
@@ -7,7 +7,7 @@ const Review = ({ review }) => {
 
     return (
         <div>
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card lg:w-96 bg-base-100 shadow-xl">
                 <figure className="px-10 pt-10">
                     <img src={image} alt="Shoes" className="rounded-xl w-32" />
                 </figure>
