@@ -14,7 +14,7 @@ const AllUsers = () => {
  // make an user to admin ---------------------
 
     const makeAdmin = userEmail =>{
-        fetch(`http://localhost:5000/admin?email=${userEmail}`,{
+        fetch(`https://aqueous-cove-84612.herokuapp.com/admin?email=${userEmail}`,{
             method:'PUT',
             headers:{'authorization':`Bearer ${localStorage.getItem('userToken')}`}
         })

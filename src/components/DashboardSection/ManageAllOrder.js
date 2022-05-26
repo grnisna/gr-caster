@@ -7,7 +7,7 @@ const ManageAllOrder = () => {
     const [shipped, setShipped] = useState(false);
 
     // get all booking --------------------------
-    const { data: allOrder, isLoading, refetch } = useQuery('allOrder', () => fetch('http://localhost:5000/manageorder').then(res => res.json()));
+    const { data: allOrder, isLoading, refetch } = useQuery('allOrder', () => fetch('https://aqueous-cove-84612.herokuapp.com/manageorder').then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
@@ -15,7 +15,7 @@ const ManageAllOrder = () => {
 
     // updata status ---------------------------
     const handleStatus = (id) => {
-        fetch(`http://localhost:5000/manageorder/${id}`, {
+        fetch(`https://aqueous-cove-84612.herokuapp.com/manageorder/${id}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' }
         })
@@ -33,7 +33,7 @@ const ManageAllOrder = () => {
 
     // delete unpaid order ------------------
     const deleteOrder = (id) => {
-        fetch(`http://localhost:5000/manageorder/${id}`, {
+        fetch(`https://aqueous-cove-84612.herokuapp.com/manageorder/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -43,8 +43,6 @@ const ManageAllOrder = () => {
                 refetch();
             })
     }
-
-
 
 
     return (
