@@ -13,7 +13,7 @@ const ManageAllOrder = () => {
         return <Loading></Loading>
     }
 
-// updata status ---------------------------
+    // updata status ---------------------------
     const handleStatus = (id) => {
         fetch(`http://localhost:5000/manageorder/${id}`, {
             method: 'PUT',
@@ -21,8 +21,8 @@ const ManageAllOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
-                if(data.$set.shipped){
+
+                if (data.$set.shipped) {
                     toast.success('successFully');
                     refetch();
                     setShipped(true);
@@ -70,15 +70,29 @@ const ManageAllOrder = () => {
                         <th>{index + 1} </th>
                         {/*  */}
                         <td>
-                            {(order.paid && !order.shipped) && <button onClick={() => handleStatus(order._id)}  className='btn btn-warning'>pending...</button>}
+                            {(order.paid && !order.shipped) && <button onClick={() => handleStatus(order._id)} className='btn btn-warning'>pending...</button>}
                             {(order.paid && order.shipped) && <h2 className='text-xl text-success font-bold'>Shipped</h2>}
                             {(!order.paid && !order.shipped) && <>
 
-                            <h2 className='text-xl text-error font-bold'>Un-Paid</h2>
-                            <button onClick={()=>deleteOrder(order._id)} className='btn btn-error btn-xs'>Cancel booked</button>
-                            
+                                <h2 className='text-xl text-error font-bold'>Un-Paid</h2>
+                                {/* -----------------------------------------  */}
+                                <a href="#my-modal-last" className="btn btn-error btn-xs">Cancel booked</a>
+
+                                <div className="modal" id="my-modal-last">
+                                    <div className="modal-box">
+                                        <h3 className="font-bold text-lg text-center">Are you Sure Want Cancel??</h3>
+                                        <p className="py-4 text-center">If Cancel then you book again.</p>
+                                        <div className="modal-action flex justify-between items-center">
+                                            <button onClick={() => deleteOrder(order._id)} className='btn btn-error' >Yes</button>
+                                            <a href="#1" className="btn btn-success">NO</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* -----------------------------------------  */}
+                                
+
                             </>}
-                        
+
                         </td>
                         <td>{order.email}</td>
                         <td>
